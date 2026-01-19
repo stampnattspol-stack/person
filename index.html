@@ -1,133 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>BangbathStyle Gang</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <style>
-    * { box-sizing: border-box; font-family: 'Poppins', system-ui; }
-    body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      scroll-behavior: smooth;
-    }
-
-    /* ===== Landing ===== */
-    .landing {
-      min-height: 100vh;
-      background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
-        url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      flex-direction: column;
-    }
-
-    .landing h1 {
-      font-size: 3.5rem;
-      letter-spacing: 3px;
-      margin: 0;
-    }
-
-    .landing p {
-      margin: 15px 0 30px;
-      opacity: .8;
-    }
-
-    .btn {
-      padding: 14px 36px;
-      border-radius: 30px;
-      background: #fff;
-      color: #000;
-      text-decoration: none;
-      font-weight: 600;
-      transition: .3s;
-    }
-
-    .btn:hover { transform: scale(1.05); }
-
-    /* ===== Person List ===== */
-    section {
-      padding: 80px 10%;
-    }
-
-    .title {
-      font-size: 2.2rem;
-      margin-bottom: 40px;
-      border-left: 4px solid #ffcc00;
-      padding-left: 15px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-    }
-
-    .card {
-      background: #111;
-      border-radius: 16px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: 0 0 25px rgba(0,0,0,.6);
-    }
-
-    .avatar {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      margin: auto;
-      background: #000;
-      border: 3px solid #ffcc00;
-    }
-
-    .name { margin-top: 15px; font-size: 1.2rem; }
-    .role { color: #ffcc00; font-size: .9rem; margin-bottom: 10px; }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      opacity: .5;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Dekbangtlez Gang</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c") center/cover no-repeat;
+  font-family:system-ui;
+  color:#fff;
+}
+.overlay{
+  background:rgba(0,0,0,.65);
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+button{
+  margin-top:20px;
+  padding:14px 28px;
+  font-size:18px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+}
+</style>
 </head>
+
 <body>
+<div class="overlay">
+  <h1>Dekbangtlez Gang</h1>
+  <p>PERSON IN MY GANG</p>
 
-  <!-- Landing -->
-  <div class="landing">
-    <h1>BANGBATHSTYLE</h1>
-    <p>PERSON IN MY GANG</p>
-    <a href="#members" class="btn">Person List</a>
-  </div>
-
-  <!-- Person List -->
-  <section id="members">
-    <div class="title">Leader</div>
-    <div class="grid">
-      <div class="card">
-        <div class="avatar"></div>
-        <div class="name">Dekbangtlez</div>
-        <div class="role">Boss</div>
-      </div>
-    </div>
-
-    <div class="title" style="margin-top:60px">Member</div>
-    <div class="grid">
-      <div class="card">
-        <div class="avatar"></div>
-        <div class="name">test</div>
-        <div class="role">Member</div>
-      </div>
-    </div>
-
-    <div class="title" style="margin-top:60px">Rookie</div>
-    <div class="grid"></div>
-  </section>
-
-  <footer>© 2026 BangbathStyle</footer>
-
+  <button onclick="location.href='list.html'">
+    Person List
+  </button>
+</div>
 </body>
 </html>
