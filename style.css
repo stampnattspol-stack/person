@@ -192,7 +192,7 @@ html, body {
 .bg {
   position: absolute;
   inset: 0;
-  background: url("bg.jpg") center / cover no-repeat;
+  background: url("https://cdn.discordapp.com/attachments/1454149098763718870/1462691428122624083/2Q.png?ex=696f1d0b&is=696dcb8b&hm=e21f8284561a983b938bfa50fc4121e6b8542ca2c520bed3aaeff14bbeb5be98&") center / cover no-repeat;
   filter: blur(1.5px) brightness(0.9);
   transform: scale(1.05);
 }
