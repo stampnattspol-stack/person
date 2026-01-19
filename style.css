@@ -97,6 +97,8 @@ section {
   height: 100%;
   object-fit: cover;
   display: block;
+
+  background: #fff;
 }
 
 .leader-border { border: 3px solid gold; }
