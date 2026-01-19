@@ -184,9 +184,11 @@ footer {
   z-index: -2;
 }
 
-/* เงาทับภาพ */
-.bg::after {
-  display: none;
+.landing {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* จัด Welcome กลางจอ */
