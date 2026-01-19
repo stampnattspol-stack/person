@@ -79,12 +79,17 @@ section {
   width: 220px;
   text-align: center;
   margin-bottom: 30px;
+}
+
+/* === AVATAR === */
 .avatar {
   width: 90px;
   height: 90px;
   border-radius: 50%;
   overflow: hidden;
   margin: auto;
+
+  background: #fff; /* ← ข้างในเป็นสีขาว */
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.35);
 }
 
@@ -94,7 +99,7 @@ section {
   object-fit: cover;
   display: block;
 }
-  
+
 .leader-border { border: 3px solid gold; }
 .member-border { border: 3px solid #4da6ff; }
 
