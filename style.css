@@ -180,15 +180,16 @@ footer {
 .bg {
   position: fixed;
   inset: 0;
-  background: url("https://cdn.discordapp.com/attachments/1454149098763718870/1462691428122624083/2Q.png?ex=696f1d0b&is=696dcb8b&hm=e21f8284561a983b938bfa50fc4121e6b8542ca2c520bed3aaeff14bbeb5be98&") center / cover no-repeat;
+  background: url("https://cdn.discordapp.com/attachments/1454149098763718870/1462691443398414407/Z.png?ex=696f1d0f&is=696dcb8f&hm=a52f8e2fc0a7a627d6556cbf748011542b27447068d47d693bc1d45f5769a6bb&") center / cover no-repeat;
   z-index: -2;
 }
 
-.landing {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* เงาทับภาพ */
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
 }
 
 /* จัด Welcome กลางจอ */
