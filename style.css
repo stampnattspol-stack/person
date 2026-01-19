@@ -1,47 +1,60 @@
-/* Landing Page */
-body.landing {
+* {
   margin: 0;
-  height: 100vh;
-  overflow: hidden; /* ❌ ไม่ให้เลื่อน */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(circle at top, #111, #000);
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
 }
 
-.enter-card {
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.enter-page {
+  display: block;
+  width: 100vw;
+  height: 100vh;
   text-decoration: none;
-  color: #fff;
-  width: 280px;
-  height: 280px;
-  background: #0b0b0b;
-  border-radius: 18px;
-  box-shadow: 0 0 40px rgba(255,255,255,0.08);
+  color: white;
+  background: 
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("bg.jpg") center/cover no-repeat;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+
+.gang-name {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.gang-sub {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.enter-btn {
+  margin-top: 30px;
+  padding: 12px 26px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  font-size: 14px;
+  cursor: pointer;
   transition: 0.3s;
 }
 
-.enter-card h1 {
-  font-size: 26px;
-  margin-bottom: 5px;
-}
-
-.enter-card p {
-  opacity: 0.7;
-  margin-bottom: 20px;
-}
-
-.enter-card span {
-  color: #ffd000;
-  letter-spacing: 2px;
-  font-weight: bold;
-}
-
-.enter-card:hover {
+.enter-btn:hover {
+  background: rgba(255,255,255,0.35);
   transform: scale(1.05);
-  box-shadow: 0 0 60px rgba(255,208,0,0.3);
 }
