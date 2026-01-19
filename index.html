@@ -1,119 +1,45 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Person List | Bangbathbxy</title>
+<title>Dekbangtlez Gang</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:'Segoe UI',sans-serif;background:radial-gradient(circle at top,#111,#000);color:#fff}
-header{text-align:center;padding:50px 20px}
-header h1{margin:0;font-size:42px}
-.search{max-width:520px;margin:20px auto}
-.search input{width:100%;padding:14px 22px;border-radius:30px;border:none;background:#1a1a1a;color:#fff;font-size:16px}
-.section{max-width:1200px;margin:40px auto;padding:0 20px}
-.section-title{font-size:22px;margin-bottom:20px;display:flex;align-items:center;gap:10px}
-.section-title:before{content:'';width:4px;height:22px;border-radius:4px}
-.leader-title:before{background:gold}
-.member-title:before{background:#ff3b3b}
-.rookie-title:before{background:#ff6b6b}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
-.card{background:linear-gradient(180deg,#111,#0b0b0b);border-radius:18px;padding:22px;text-align:center;box-shadow:0 0 20px rgba(0,0,0,.6);transition:.25s}
-.card:hover{transform:translateY(-6px)}
-.avatar{width:110px;height:110px;margin:0 auto 15px;border-radius:50%;overflow:hidden;border:3px solid #444;position:relative}
-.avatar img{width:100%;height:100%;object-fit:cover}
-.card.leader .avatar{border-color:gold}
-.card.leader .crown{display:block}
-.crown{display:none;position:absolute;top:-18px;right:-18px;font-size:28px}
-.card.rookie{opacity:.9}
-.name{font-size:18px;font-weight:600}
-.role{font-size:14px;margin-top:4px}
-.card.leader .role{color:gold}
-.card.member .role{color:#ff6b6b}
-.card.rookie .role{color:#aaa}
-.social a{display:inline-block;margin-top:10px;color:#4da3ff;text-decoration:none;font-size:14px}
-/* Admin */
-.admin-btn{position:fixed;bottom:20px;right:20px;background:#fff;color:#000;border:none;border-radius:50%;width:56px;height:56px;font-size:22px;cursor:pointer}
-.admin-panel{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center}
-.admin-box{background:#111;padding:30px;border-radius:20px;max-width:420px;width:100%}
-.admin-box h2{text-align:center;margin-top:0}
-.admin-box input,select,button{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none}
-.admin-box button{cursor:pointer;font-weight:bold}
-.footer{text-align:center;padding:30px;color:#777;font-size:14px}
-@media(max-width:600px){header h1{font-size:32px}}
+body{
+  margin:0;
+  height:100vh;
+  background:url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c") center/cover no-repeat;
+  font-family:system-ui;
+  color:#fff;
+}
+.overlay{
+  background:rgba(0,0,0,.65);
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+button{
+  margin-top:20px;
+  padding:14px 28px;
+  font-size:18px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+}
 </style>
 </head>
+
 <body>
+<div class="overlay">
+  <h1>Dekbangtlez Gang</h1>
+  <p>PERSON IN MY GANG</p>
 
-<header>
-  <h1>Person List</h1>
-  <div class="search"><input id="search" placeholder="ค้นหารายชื่อ..." onkeyup="render()"></div>
-</header>
-
-<div class="section">
-  <div class="section-title leader-title">Leader</div>
-  <div class="grid" id="leader"></div>
+  <button onclick="location.href='list.html'">
+    Person List
+  </button>
 </div>
-
-<div class="section">
-  <div class="section-title member-title">Member</div>
-  <div class="grid" id="member"></div>
-</div>
-
-<div class="section">
-  <div class="section-title rookie-title">Rookie</div>
-  <div class="grid" id="rookie"></div>
-</div>
-
-<button class="admin-btn" onclick="openAdmin()">🔐</button>
-
-<div class="admin-panel" id="adminPanel">
-  <div class="admin-box" id="loginBox">
-    <h2>Admin Login</h2>
-    <input type="password" id="adminPass" placeholder="Admin Password">
-    <button onclick="login()">เข้าสู่ระบบ</button>
-  </div>
-  <div class="admin-box" id="manageBox" style="display:none">
-    <h2>จัดการรายชื่อ</h2>
-    <input id="nameInput" placeholder="ชื่อ">
-    <input id="imgInput" placeholder="ชื่อไฟล์รูป (avatar.jpg)">
-    <input id="fbInput" placeholder="Facebook URL">
-    <select id="roleInput"><option>Leader</option><option>Member</option><option>Rookie</option></select>
-    <button onclick="addPerson()">➕ เพิ่ม</button>
-    <button onclick="logout()">ออก</button>
-  </div>
-</div>
-
-<script>
-const ADMIN_PASSWORD='1234'; // เปลี่ยนรหัสตรงนี้
-let people=JSON.parse(localStorage.getItem('people'))||[
- {name:'Dekbangtlez',role:'Leader',img:'avatar1.jpg',fb:'#'},
- {name:'test',role:'Member',img:'avatar1.jpg',fb:'#'}
-];
-
-function render(){
- const q=(search.value||'').toLowerCase();
- leader.innerHTML=member.innerHTML=rookie.innerHTML='';
- people.filter(p=>p.name.toLowerCase().includes(q)).forEach(p=>{
-  const div=document.createElement('div');
-  div.className='card '+p.role.toLowerCase();
-  div.innerHTML=`
-   <div class="avatar"><span class="crown">👑</span><img src="${p.img}"></div>
-   <div class="name">${p.name}</div>
-   <div class="role">${p.role}</div>
-   <div class="social"><a href="${p.fb}" target="_blank">Facebook</a></div>`;
-  (p.role==='Leader'?leader:p.role==='Member'?member:rookie).appendChild(div);
- });
- localStorage.setItem('people',JSON.stringify(people));
-}
-render();
-
-function openAdmin(){adminPanel.style.display='flex'}
-function login(){if(adminPass.value===ADMIN_PASSWORD){loginBox.style.display='none';manageBox.style.display='block'}else alert('รหัสไม่ถูกต้อง')}
-function logout(){adminPanel.style.display='none';loginBox.style.display='block';manageBox.style.display='none'}
-function addPerson(){people.push({name:nameInput.value,role:roleInput.value,img:imgInput.value,fb:fbInput.value});render()}
-</script>
-
-<div class="footer">© 2026 Bangbathbxy</div>
 </body>
 </html>
