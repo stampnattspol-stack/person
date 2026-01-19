@@ -44,7 +44,7 @@ body{margin:0;font-family:'Segoe UI',sans-serif;background:radial-gradient(circl
   <div class="grid" id="member"></div>
 </div>
 
-  <div class="section">
+ <div class="section">
   <div class="section-title">Member Lady</div>
   <div class="grid" id="member Lady"></div>
 </div>
@@ -72,18 +72,37 @@ const people=[
 ];
 
 function render(){
-  const q=document.getElementById('search').value.toLowerCase();
-  leader.innerHTML='';member.innerHTML='';
-  people.filter(p=>p.name.toLowerCase().includes(q)).forEach(p=>{
-    const card=`<div class="card">
-      <div class="avatar"><img src="${p.img}"></div>
-      <div class="name">${p.name}</div>
-      <div class="role">${p.role}</div>
-      <div class="social"><a href="${p.fb}" target="_blank">Facebook</a></div>
-    </div>`;
-    (p.role==='Leader'?leader:member).innerHTML+=card;
-  });
+  const q = document.getElementById('search').value.toLowerCase();
+
+  leader.innerHTML = '';
+  member.innerHTML = '';
+  memberLady.innerHTML = '';
+
+  people
+    .filter(p => p.name.toLowerCase().includes(q))
+    .forEach(p => {
+
+      const card = `
+      <div class="card">
+        <div class="avatar"><img src="${p.img}"></div>
+        <div class="name">${p.name}</div>
+        <div class="role">${p.role}</div>
+        <div class="social">
+          <a href="${p.fb}" target="_blank">Facebook</a>
+        </div>
+      </div>
+      `;
+
+      if (p.role === 'Leader') {
+        leader.innerHTML += card;
+      } else if (p.role === 'Member Lady') {
+        memberLady.innerHTML += card;
+      } else {
+        member.innerHTML += card;
+      }
+    });
 }
+
 render();
 </script>
 
