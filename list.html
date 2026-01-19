@@ -17,7 +17,7 @@ body{margin:0;font-family:'Segoe UI',sans-serif;background:radial-gradient(circl
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
 .card{background:linear-gradient(180deg,#111,#0b0b0b);border-radius:16px;padding:20px;text-align:center;box-shadow:0 0 20px rgba(0,0,0,.6);transition:.25s}
 .card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(255,0,0,.15)}
-.avatar{width:110px;height:110px;margin:0 auto 15px;border-radius:50%;overflow:hidden;border:3px solid #fff}
+.avatar{width:110px;height:110px;margin:0 auto 15px;border-radius:50%;overflow:hidden;border:3px solid #ff3b3b}
 .avatar img{width:100%;height:100%;object-fit:cover}
 .name{font-size:18px;font-weight:600}
 .role{font-size:14px;color:#ff6b6b;margin-top:4px}
@@ -27,26 +27,36 @@ body{margin:0;font-family:'Segoe UI',sans-serif;background:radial-gradient(circl
 </head>
 <body>
 
-<section>
-
-  <div class="section">
-    <div class="section-title">Leader</div>
-    <div class="grid" id="leader"></div>
+<div class="header">
+  <h1>Person List</h1>
+  <div class="search-box">
+    <input type="text" id="search" placeholder="ค้นหารายชื่อ..." onkeyup="render()">
   </div>
+</div>
 
-  <div class="section">
-    <div class="section-title">Member</div>
-    <div class="grid" id="member"></div>
-  </div>
+<!-- Leader -->
+<div class="section">
+  <div class="section-title">Leader</div>
+  <div class="grid" id="leader"></div>
+</div>
 
-  <div class="section">
-    <div class="section-title">Member Lady</div>
-    <div class="grid" id="member-lady"></div>
-  </div>
+<!-- Member -->
+<div class="section">
+  <div class="section-title">Member</div>
+  <div class="grid" id="member"></div>
+</div>
 
-</section>
+<!-- Member Lady (เพิ่มใหม่) -->
+<div class="section">
+  <div class="section-title">Member Lady</div>
+  <div class="grid" id="member-lady"></div>
+</div>
 
 <script>
+const leader = document.getElementById('leader');
+const member = document.getElementById('member');
+const memberLady = document.getElementById('member-lady');
+
 const people=[
   {name:'Pond Bangbathbxy', role:'Leader', img:'https://pic.in.th/image/Gemini-Generated-Image-msnj8mmsnj8mmsnj.nve5IW.jpg', fb:'https://www.facebook.com/pond.vorpard'},
   {name:'Zent DekBangbathbxy', role:'Member', img:'https://media.giphy.com/media/mlCb3AjEE6N4Q/giphy.gif', fb:'https://www.facebook.com/zen.karuna'},
@@ -67,52 +77,31 @@ const people=[
   {name:'Minna Bangbathbxby', role:'Member Lady', img:'avatar1.jpg', fb:'https://www.facebook.com/minna.rablxngr.i'},
   {name:'Pued Bangbathbxy', role:'Leader', img:'avatar.jpg', fb:'https://www.facebook.com/profile.php?id=100077674954991'}
 ];
-  
-<script>
-function render(){
-  const q = document.getElementById('search').value.toLowerCase();
 
-  leader.innerHTML = '';
-  member.innerHTML = '';
-  memberLady.innerHTML = '';
+function render(){
+  const q=document.getElementById('search').value.toLowerCase();
+
+  leader.innerHTML='';
+  member.innerHTML='';
+  memberLady.innerHTML='';
 
   people
-    .filter(p => p.name.toLowerCase().includes(q))
-    .forEach(p => {
+    .filter(p=>p.name.toLowerCase().includes(q))
+    .forEach(p=>{
+      const card=`<div class="card">
+        <div class="avatar"><img src="${p.img}"></div>
+        <div class="name">${p.name}</div>
+        <div class="role">${p.role}</div>
+        <div class="social"><a href="${p.fb}" target="_blank">Facebook</a></div>
+      </div>`;
 
-      const card = `
-        <div class="card ${
-          p.role === 'Leader'
-            ? 'leader'
-            : p.role === 'Member Lady'
-            ? 'member-lady'
-            : ''
-        }">
-          <div class="avatar">
-            <img src="${p.img}">
-          </div>
-          <div class="name">${p.name}</div>
-          <div class="role">${p.role}</div>
-          <div class="social">
-            <a href="${p.fb}" target="_blank">Facebook</a>
-          </div>
-        </div>
-      `;
-
-      if (p.role === 'Leader') {
-        leader.innerHTML += card;
-      } else if (p.role === 'Member Lady') {
-        memberLady.innerHTML += card;
-      } else {
-        member.innerHTML += card;
-      }
-
+      if(p.role==='Leader') leader.innerHTML+=card;
+      else if(p.role==='Member Lady') memberLady.innerHTML+=card;
+      else member.innerHTML+=card;
     });
 }
-
 render();
 </script>
-
 
 <div class="footer">© 2026 Bangbathbxy</div>
 </body>
