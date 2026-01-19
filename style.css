@@ -85,11 +85,8 @@ section {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  overflow: hidden;
-  margin: auto;
-
   background: #fff;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.35);
+  overflow: hidden;
 }
 
 .avatar img {
@@ -97,8 +94,6 @@ section {
   height: 100%;
   object-fit: cover;
   display: block;
-
-  background: #fff;
 }
 
 .leader-border { border: 3px solid gold; }
