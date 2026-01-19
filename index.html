@@ -1,203 +1,26 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Person List</title>
+<title>BangbathStyle Gang</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-  box-sizing: border-box;
-  font-family: system-ui, sans-serif;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #111, #000);
-  color: #fff;
-}
-
-.section {
-  max-width: 900px;
-  margin: 50px auto;
-}
-
-.section-title {
-  font-size: 22px;
-  margin: 20px 0;
-  border-left: 4px solid red;
-  padding-left: 10px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
-  gap: 20px;
-}
-
-/* CARD */
-.card {
-  background: #111;
-  border-radius: 16px;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: .25s;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-}
-
-/* AVATAR */
-.avatar {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: auto;
-  background: #fff; /* วงขาวตอนยังไม่ใส่รูป */
-  position: relative;
-}
-
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* 🔥 LEADER EFFECT */
-.leader .avatar::before {
-  content: "";
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: url("https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif");
-  background-size: cover;
-  z-index: -1;
-  animation: pulse 1.2s infinite alternate;
-}
-
-@keyframes pulse {
-  0% { filter: brightness(1); }
-  100% { filter: brightness(1.6); }
-}
-
-/* TEXT */
-.name {
-  margin-top: 12px;
-  font-weight: bold;
-}
-
-.role {
-  font-size: 14px;
-  margin-top: 4px;
-}
-
-.leader-text { color: red; }
-.member-text { color: #4da6ff; }
-
-/* POPUP */
-.popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.popup-box {
-  background: #111;
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
-  width: 300px;
-  position: relative;
-}
-
-.popup-box img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  cursor: pointer;
-  font-size: 22px;
-}
-</style>
+<!-- CSS -->
+<link rel="stylesheet" href="style.css">
 </head>
+<body class="landing">
 
-<body>
+<div class="overlay">
+  <h1 class="gang-title">Welcome to BangbathStyle</h1>
+  <p class="gang-sub">1 PERSON IN MY GANG</p>
 
-<div class="section">
-  <div class="section-title">Leader</div>
-  <div class="grid">
-    <div class="card leader" onclick="openProfile('pond')">
-      <div class="avatar">
-        <!-- ถ้าไม่ใส่รูป จะเป็นวงขาว -->
-        <!-- <img src=""> -->
-      </div>
-      <div class="name">Pond Bangbathbxy</div>
-      <div class="role leader-text">Leader</div>
-    </div>
-  </div>
-
-  <div class="section-title">Member</div>
-  <div class="grid">
-    <div class="card" onclick="openProfile('zent')">
-      <div class="avatar">
-        <img src="https://media.giphy.com/media/mlCb3AjEE6N4Q/giphy.gif">
-      </div>
-      <div class="name">Zent</div>
-      <div class="role member-text">Member</div>
-    </div>
-  </div>
+  <a href="list.html" class="enter-btn">
+    Person List ☰
+  </a>
 </div>
 
-<!-- POPUP -->
-<div id="popup" class="popup">
-  <div class="popup-box">
-    <span class="close" onclick="closeProfile()">×</span>
-    <img id="pAvatar">
-    <h3 id="pName"></h3>
-    <p id="pRole"></p>
-  </div>
+  
 </div>
-
-<script>
-const profiles = {
-  pond: {
-    name: "Pond Bangbathbxy",
-    role: "Leader",
-    avatar: "https://media.giphy.com/media/mlCb3AjEE6N4Q/giphy.gif"
-  },
-  zent: {
-    name: "Zent",
-    role: "Member",
-    avatar: "https://media.giphy.com/media/mlCb3AjEE6N4Q/giphy.gif"
-  }
-};
-
-function openProfile(id) {
-  const p = profiles[id];
-  pAvatar.src = p.avatar;
-  pName.innerText = p.name;
-  pRole.innerText = p.role;
-  popup.style.display = "flex";
-}
-
-function closeProfile() {
-  popup.style.display = "none";
-}
-</script>
 
 </body>
 </html>
