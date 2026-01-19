@@ -176,33 +176,78 @@ footer {
   order: 3;
 }
 
-/* === FULL BACKGROUND IMAGE === */
-.bg {
-  position: fixed;
-  inset: 0;
-  background: url("https://cdn.discordapp.com/attachments/1454149098763718870/1462691428122624083/2Q.png?ex=696f1d0b&is=696dcb8b&hm=e21f8284561a983b938bfa50fc4121e6b8542ca2c520bed3aaeff14bbeb5be98&") center / cover no-repeat;
-  z-index: -2;
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: system-ui, sans-serif;
 }
 
-/* เงาทับภาพ */
-.bg::after {
-  content: "";
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ภาพพื้นหลัง */
+.bg {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: url("bg.jpg") center / cover no-repeat;
+  filter: blur(1.5px) brightness(0.9);
+  transform: scale(1.05);
 }
 
-/* จัด Welcome กลางจอ */
-.landing {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ตัวเนื้อหา */
+/* VIGNETTE + DARK */
 .overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,0.25) 0%,
+      rgba(0,0,0,0.55) 45%,
+      rgba(0,0,0,0.85) 100%
+    );
+}
+
+/* CONTENT */
+.content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: #fff;
-  z-index: 1;
 }
+
+.content h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.content p {
+  opacity: 0.8;
+  margin: 10px 0 25px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* BUTTON */
+button {
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.12);
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+button:hover {
+  background: rgba(255,255,255,0.2);
+}
+
