@@ -72,38 +72,19 @@ const people=[
 ];
 
 function render(){
-  const q = document.getElementById('search').value.toLowerCase();
-
-  leader.innerHTML = '';
-  member.innerHTML = '';
-  memberLady.innerHTML = '';
-
-  people
-    .filter(p => p.name.toLowerCase().includes(q))
-    .forEach(p => {
-
-      const card = `
-      <div class="card">
-        <div class="avatar"><img src="${p.img}"></div>
-        <div class="name">${p.name}</div>
-        <div class="role">${p.role}</div>
-        <div class="social">
-          <a href="${p.fb}" target="_blank">Facebook</a>
-        </div>
-      </div>
-      `;
-
-      if (p.role === 'Leader') {
-        leader.innerHTML += card;
-      } else if (p.role === 'Member Lady') {
-        member.innerHTML += card;
-      } else {
-        memberLady.innerHTML += card;
-      }
-    });
+  const q=document.getelementById('search').value.toLowercase();
+  leader.innerHTML='';member.innerHTM='';memberLady.innerHTML='';
+  people.filter(p=>p.name.toLowerCase().includes(q)).forEach(p=>{
+    const card=`<div class="card">
+    <div class="avatar"><img src"${p.img}"><div>
+    <div class="name">${p.name}</div>
+    <div class="role">${p.role}</div>
+    <div class="social">${p.social}</div>
+  </div>`;
+    (p.role==='Leader'?leader:member:memberLady).innerHTML+=card;
+  });
 }
-
-render();
+  render();
 </script>
 
 <div class="footer">© 2026 Bangbathbxy</div>
