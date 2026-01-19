@@ -255,23 +255,3 @@ button:hover {
   color: #FFFF; /* เปลี่ยนสีตรงนี้ */
   text-shadow: 0 0 12px rgba(240, 248, 255);
 }
-
-.avatar-glow {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  padding: 4px;
-  background: #FFFF; /* สีขอบ */
-  box-shadow:
-    0 0 15px rgba(240, 248, 255),
-    0 0 30px rgba(240, 248, 255),
-    0 0 60px rgba(240, 248, 255);
-}
-
-.avatar-glow img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
