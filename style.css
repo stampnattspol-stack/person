@@ -79,31 +79,50 @@ section {
   width: 220px;
   text-align: center;
   margin-bottom: 30px;
-  
-.avatar {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  border: 2px solid #fff;   /* วงขอบ */
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.avatar-inner {
+/* ===== AVATAR ===== */
+.avatar {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: #fff;         /* ← ขาวจริงตรงนี้ */
+  margin: auto;
+  position: relative;
   overflow: hidden;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.35);
 }
 
-.avatar-inner img {
+/* 🔥 วงขอบ */
+.avatar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* 🔥 พื้นด้านใน (ขาว ก่อนใส่รูป) */
+.avatar::after {
+  content: "";
+  position: absolute;
+  inset: 4px;          /* ปรับความหนาขอบได้ */
+  border-radius: 50%;
+  background: #fff;
+  z-index: 1;
+}
+
+/* ===== รูป ===== */
+.avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  position: relative;
+  z-index: 2;
 }
+
 .leader-border { border: 3px solid gold; }
 .member-border { border: 3px solid #4da6ff; }
 
