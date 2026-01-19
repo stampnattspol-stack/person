@@ -2,27 +2,23 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
-body.landing {
-  height: 100vh;
-  background: url("bg.jpg") center/cover no-repeat;
-  overflow: hidden;
+body {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
 }
 
-/* ฟิล์มดำทับ */
+/* ================= LANDING ================= */
+.landing {
+  background: url("bg.jpg") center / cover no-repeat fixed;
+}
+
 .overlay {
-  position: absolute;
-  inset: 0;
+  min-height: 100vh;
   background: rgba(0,0,0,0.65);
-}
-
-/* กล่องกลางจอ */
-.center {
-  position: relative;
-  z-index: 2;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,30 +26,84 @@ body.landing {
   text-align: center;
 }
 
-.center h1 {
-  color: #ffffff;
-  font-size: 48px;
-  letter-spacing: 2px;
+.gang-title {
+  font-size: 42px;
+  color: #b266ff;
   margin-bottom: 10px;
 }
 
-.center p {
-  color: #bfbfbf;
-  font-size: 14px;
+.gang-sub {
+  opacity: 0.8;
   margin-bottom: 25px;
 }
 
-/* ปุ่ม */
 .enter-btn {
-  padding: 10px 28px;
+  padding: 14px 28px;
   border: 1px solid #fff;
-  color: #fff;
-  text-decoration: none;
   border-radius: 30px;
+  text-decoration: none;
+  color: #fff;
   transition: 0.3s;
 }
 
 .enter-btn:hover {
   background: #fff;
   color: #000;
+}
+
+/* ================= LIST ================= */
+.page-title {
+  text-align: center;
+  margin: 40px 0;
+}
+
+section {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.role {
+  margin: 20px 0;
+  font-size: 22px;
+}
+
+.leader { color: gold; }
+.member { color: #4da6ff; }
+.rookie { color: #ff6666; }
+
+.card {
+  background: #111;
+  border-radius: 16px;
+  padding: 20px;
+  width: 220px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #000;
+  margin: auto;
+}
+
+.leader-border { border: 3px solid gold; }
+.member-border { border: 3px solid #4da6ff; }
+
+.leader-text { color: gold; }
+.member-text { color: #4da6ff; }
+
+.link {
+  display: block;
+  margin-top: 10px;
+  color: #4da6ff;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  opacity: 0.6;
 }
