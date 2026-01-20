@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -68,7 +69,7 @@ body{
   box-shadow:0 10px 35px rgba(207,207,207)
 }
 
-/* ---------- AVATAR ---------- */
+/* ---------- AVATAR + GLOW ---------- */
 .avatar{
   width:120px;
   height:120px;
@@ -78,22 +79,29 @@ body{
   background:
     radial-gradient(circle at center,#383838,transparent 65%),
     linear-gradient(135deg,#FFFFFF,#333333);
-  box-shadow:0 0 15px #B8B8B8,0 0 30px #FFFFFF;
+  box-shadow:
+    0 0 15px #B8B8B8,
+    0 0 30px #FFFFFF;
 }
+
 .avatar img{
   width:100%;
   height:100%;
   border-radius:50%;
   object-fit:cover;
+  background:#000;
 }
 
-/* ---------- LEADER ---------- */
+/* ---------- LEADER SPECIAL ---------- */
 .card.leader .avatar{
   background:
     radial-gradient(circle,#ffd70055,transparent 65%),
     linear-gradient(135deg,#ffd700,#ff3b3b);
-  box-shadow:0 0 20px #ffd700,0 0 45px #ff3b3b;
+  box-shadow:
+    0 0 20px #ffd700,
+    0 0 45px #ff3b3b;
 }
+
 .card.leader::after{
   content:"LEADER";
   position:absolute;
@@ -103,60 +111,27 @@ body{
   padding:4px 8px;
   border-radius:10px;
   background:#ff3b3b;
+  color:#fff;
 }
 
 /* ---------- TEXT ---------- */
 .name{font-size:18px;font-weight:600}
 .role{font-size:14px;color:#FF5100;margin-top:4px}
-.social a{color:#1A70D9;text-decoration:none}
 
-/* ---------- ADMIN ---------- */
-.admin-btn{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  padding:12px 18px;
-  border-radius:30px;
-  border:none;
-  background:#ff3b3b;
-  color:#fff;
-  cursor:pointer;
-  z-index:999
-}
-.admin-panel{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.75);
-  backdrop-filter:blur(6px);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:1000
-}
-.admin-box{
-  background:#111;
-  padding:25px;
-  border-radius:16px;
-  width:320px;
-  text-align:center
-}
-.admin-box input,select{
-  width:100%;
-  padding:10px;
-  margin:6px 0;
-}
-.admin-box button{width:100%;margin-top:8px}
-.delete-btn{
+.social a{
+  display:inline-block;
   margin-top:10px;
-  background:#ff3b3b;
-  border:none;
-  padding:6px;
-  color:#fff;
-  border-radius:8px;
-  cursor:pointer
+  color:#1A70D9;
+  text-decoration:none;
+  font-size:14px
 }
 
-.footer{text-align:center;padding:30px;color:#aaa}
+.footer{
+  text-align:center;
+  padding:30px;
+  color:#aaa;
+  font-size:14px
+}
 </style>
 </head>
 
@@ -165,44 +140,38 @@ body{
 <div class="header">
   <h1>Person List</h1>
   <div class="search-box">
-    <input id="search" placeholder="search..." onkeyup="render()">
+    <input type="text" id="search" placeholder="search...." onkeyup="render()">
   </div>
 </div>
 
-<div class="section"><div class="section-title">Leader</div><div class="grid" id="leader"></div></div>
-<div class="section"><div class="section-title">Bangbathbxy</div><div class="grid" id="bangbathbxy"></div></div>
-<div class="section"><div class="section-title">Bangbathbxby</div><div class="grid" id="bangbathbxby"></div></div>
-<div class="section"><div class="section-title">Member</div><div class="grid" id="member"></div></div>
+<div class="section">
+  <div class="section-title">Leader</div>
+  <div class="grid" id="leader"></div>
+</div>
 
-<button class="admin-btn" onclick="openAdmin()">ADMIN</button>
+<div class="section">
+  <div class="section-title">Bangbathbxy</div>
+  <div class="grid" id="bangbathbxy"></div>
+</div>
 
-<div class="admin-panel" id="adminPanel">
-  <div class="admin-box" id="loginBox">
-    <h2>🔐 Admin Login</h2>
-    <input id="adminPass" type="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-  </div>
+<div class="section">
+  <div class="section-title">Bangbathbxby</div>
+  <div class="grid" id="bangbathbxby"></div>
+</div>
 
-  <div class="admin-box" id="manageBox" style="display:none">
-    <h2>👑 Manage</h2>
-    <input id="nameInput" placeholder="Name">
-    <input id="imgInput" placeholder="Image URL">
-    <input id="fbInput" placeholder="Facebook URL">
-    <select id="roleInput">
-      <option>Leader</option>
-      <option>Bangbathbxy</option>
-      <option>Bangbathbxby</option>
-      <option>Member</option>
-    </select>
-    <button onclick="addPerson()">➕ Add</button>
-    <button onclick="logout()">Logout</button>
-  </div>
+<div class="section">
+  <div class="section-title">Member</div>
+  <div class="grid" id="member"></div>
 </div>
 
 <script>
-const ADMIN_PASSWORD='1234';
-let people=JSON.parse(localStorage.getItem('people'))||[
- {name:'Pond Bangbathbxy', role:'Leader', img:'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG91aWMxaTM4OHNzYnhreWZsZmUzazJ6dzRyZXNzMms3dDZzNmRtciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RSPAUsEy1azRu/giphy.gif', fb:'https://www.facebook.com/pond.vorpard'},
+const leader = document.getElementById('leader');
+const bangbathbxy = document.getElementById('bangbathbxy');
+const bangbathbxby = document.getElementById('bangbathbxby');
+const member = document.getElementById('member');
+
+const people=[
+  {name:'Pond Bangbathbxy', role:'Leader', img:'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG91aWMxaTM4OHNzYnhreWZsZmUzazJ6dzRyZXNzMms3dDZzNmRtciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RSPAUsEy1azRu/giphy.gif', fb:'https://www.facebook.com/pond.vorpard'},
   {name:'Zent DekBangbathbxy', role:'Bangbathbxy', img:'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2prMjN1bmQ4dTEybmM3NXltMHhscmw0NG44cGNmZnNyMzFqN3BlaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U5W6yVhErxRhUCutFn/giphy.gif', fb:'https://www.facebook.com/zen.karuna'},
   {name:'Nongkimskibidi Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1426977149793075270/1462911635088867591/shura-hiwa-lamer.gif?ex=696fea21&is=696e98a1&hm=60b6a4269f5152c5dec02d59b66e01b7a17449a9799d2ef527fe19c243deef3a&', fb:'https://www.facebook.com/profile.php?id=61585472849187'},
   {name:'Jaguar Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462851393227460668/Z.png?ex=696fb206&is=696e6086&hm=7006e4e836083a1abcb784ba019100724b425f8353933e8998a9441c8f2111f9&', fb:'https://www.facebook.com/profile.php?id=61572409596437'},
@@ -223,60 +192,37 @@ let people=JSON.parse(localStorage.getItem('people'))||[
   {name:'Pued Bangbathbxy', role:'Leader', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/profile.php?id=100077674954991'}
 ];
 
-const leader=document.getElementById('leader'),
-bangbathbxy=document.getElementById('bangbathbxy'),
-bangbathbxby=document.getElementById('bangbathbxby'),
-member=document.getElementById('member');
-
-let isAdmin=false;
-
 function render(){
- const q=search.value.toLowerCase();
- leader.innerHTML=bangbathbxy.innerHTML=bangbathbxby.innerHTML=member.innerHTML='';
- people.filter(p=>p.name.toLowerCase().includes(q)).forEach((p,i)=>{
-  const card=document.createElement('div');
-  card.className='card'+(p.role==='Leader'?' leader':'');
-  card.innerHTML=`
-   <div class="avatar"><img src="${p.img}"></div>
-   <div class="name">${p.name}</div>
-   <div class="role">${p.role}</div>
-   <div class="social"><a href="${p.fb}" target="_blank">Facebook</a></div>
-  `;
-  if(isAdmin){
-    const del=document.createElement('button');
-    del.textContent='ลบ';
-    del.className='delete-btn';
-    del.onclick=()=>{people.splice(i,1);save()};
-    card.appendChild(del);
-  }
-  (p.role==='Leader'?leader:p.role==='Bangbathbxy'?bangbathbxy:p.role==='Bangbathbxby'?bangbathbxby:member).appendChild(card);
- });
-}
+  const q = document.getElementById('search').value.toLowerCase();
 
-function save(){
- localStorage.setItem('people',JSON.stringify(people));
- render();
-}
+  leader.innerHTML = '';
+  bangbathbxy.innerHTML = '';
+  bangbathbxby.innerHTML = '';
+  member.innerHTML = '';
 
-function openAdmin(){adminPanel.style.display='flex'}
-function login(){
- if(adminPass.value===ADMIN_PASSWORD){
-  isAdmin=true;
-  loginBox.style.display='none';
-  manageBox.style.display='block';
-  render();
- }else alert('รหัสผิด');
-}
-function logout(){
- isAdmin=false;
- adminPanel.style.display='none';
- loginBox.style.display='block';
- manageBox.style.display='none';
- render();
-}
-function addPerson(){
- people.push({name:nameInput.value,img:imgInput.value,fb:fbInput.value,role:roleInput.value});
- save();
+  people
+    .filter(p => p.name.toLowerCase().includes(q))
+    .forEach(p => {
+
+      const isLeader = p.role === 'Leader';		
+
+      const card = `
+      <div class="card ${isLeader ? 'leader' : ''}">
+        <div class="avatar">
+          <img src="${p.img}">
+        </div>
+        <div class="name">${p.name}</div>
+        <div class="role">${p.role}</div>
+        <div class="social">
+          <a href="${p.fb}" target="_blank">Facebook</a>
+        </div>
+      </div>`;
+
+      if(p.role === 'Leader') leader.innerHTML += card;
+      else if(p.role === 'Bangbathbxy') bangbathbxy.innerHTML += card;
+      else if(p.role === 'Bangbathbxby') bangbathbxby.innerHTML += card;
+      else member.innerHTML += card;
+    });
 }
 
 render();
