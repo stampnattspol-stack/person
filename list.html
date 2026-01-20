@@ -114,7 +114,20 @@ function render(){
     });
 }
 
-render();
+render(const isLeader = p.role === 'Leader';
+
+const card = `
+<div class="card ${isLeader ? 'leader' : ''}">
+  <div class="avatar"><img src="${p.img}"></div>
+  <div class="name">
+    ${p.name}
+    ${isLeader ? '<span class="crown">♕</span>' : ''}
+  </div>
+  <div class="role">${p.role}</div>
+  <div class="social">
+    <a href="${p.fb}" target="_blank">Facebook</a>
+  </div>
+</div>`;);
 </script>
 
 <div class="footer">© 2026 Bangbathbxy</div>
