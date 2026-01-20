@@ -12,15 +12,7 @@ html,body{
   color:#fff;
 }
 
-/* ================= THEME CONTROL ================= */
-:root{
-  --leader-color:#ff3b3b;
-  --member-color:#4da6ff;
-  --lady-color:#ff66cc;
-  --glow:0.65;
-}
-
-/* ================= HEADER ================= */
+/* ================= HEADER / LANDING ================= */
 .header{
   text-align:center;
   padding:80px 20px;
@@ -30,26 +22,15 @@ html,body{
     center/cover no-repeat;
 }
 
-.header h1{
+.gang-title{
   font-size:42px;
-  margin:0;
-}
-
-/* ================= SEARCH ================= */
-.search-box{
-  max-width:500px;
-  margin:25px auto 0;
-}
-
-.search-box input{
-  width:100%;
-  padding:14px 22px;
-  border-radius:30px;
-  border:none;
-  background:#1a1a1a;
   color:#fff;
-  font-size:16px;
-  outline:none;
+  text-shadow:0 0 12px rgba(240,248,255,.6);
+}
+
+.gang-sub{
+  opacity:.8;
+  margin-top:10px;
 }
 
 /* ================= SECTION ================= */
@@ -66,16 +47,16 @@ html,body{
 
 .section-title{
   font-size:22px;
-  margin-bottom:25px;
+  margin-bottom:20px;
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
 }
 
 .section-title::before{
-  content:'';
+  content:"";
   width:4px;
-  height:24px;
+  height:22px;
   background:#ff3b3b;
   border-radius:4px;
 }
@@ -84,22 +65,29 @@ html,body{
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:22px;
+  gap:20px;
 }
 
-/* ================= CARD ================= */
+/* ================= CARD (BASE – แบบรูปที่ส่ง) ================= */
 .card{
-  background:linear-gradient(180deg,#111,#0b0b0b);
+  background:linear-gradient(180deg,rgba(20,20,20,.95),rgba(8,8,8,.95));
   border-radius:16px;
-  padding:22px 20px 26px;
+  padding:22px 20px;
   text-align:center;
-  transition:.35s ease;
   position:relative;
+  transition:.35s ease;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.06),
+    inset 0 0 25px rgba(255,255,255,.03),
+    0 20px 40px rgba(0,0,0,.85);
 }
 
-/* ===== Hover ยกการ์ด ===== */
 .card:hover{
-  transform:translateY(-6px);
+  transform:translateY(-4px);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.12),
+    inset 0 0 30px rgba(255,255,255,.05),
+    0 30px 60px rgba(0,0,0,.9);
 }
 
 /* ================= AVATAR ================= */
@@ -108,15 +96,14 @@ html,body{
   height:100px;
   margin:0 auto 14px;
   border-radius:50%;
-  overflow:hidden;
-  position:relative;
-  border:3px solid #333;
-  transition:.35s ease;
+  padding:3px;
+  background:rgba(255,255,255,.06);
 }
 
 .avatar img{
   width:100%;
   height:100%;
+  border-radius:50%;
   object-fit:cover;
 }
 
@@ -124,14 +111,12 @@ html,body{
 .name{
   font-size:18px;
   font-weight:600;
-  cursor:pointer;
-  transition:.3s ease;
 }
 
 .role{
   font-size:14px;
+  opacity:.7;
   margin-top:4px;
-  opacity:.85;
 }
 
 .social a{
@@ -142,61 +127,52 @@ html,body{
   font-size:14px;
 }
 
-/* ================= ROLE COLORS ================= */
-.card.leader .role{color:var(--leader-color);}
-.card.member .role{color:var(--member-color);}
-.card.member-lady .role{color:var(--lady-color);}
+/* ================= RANK STYLE ================= */
 
-/* ================= HOVER NAME EFFECT ================= */
 /* LEADER */
-.card.leader .name:hover{
-  color:var(--leader-color);
-  text-shadow:0 0 12px rgba(255,60,60,.9);
-}
-
-.card.leader:hover{
+.card.leader{
   box-shadow:
-    0 0 0 1px rgba(255,60,60,.4),
-    0 0 45px rgba(255,0,0,.5);
+    inset 0 0 0 1px rgba(255,200,120,.25),
+    inset 0 0 30px rgba(255,180,120,.06),
+    0 25px 50px rgba(0,0,0,.9);
 }
 
-.card.leader:hover .avatar{
-  border-color:var(--leader-color);
+.card.leader .avatar{
+  background:rgba(255,200,120,.15);
+}
+
+.crown{
+  color:#ffb347;
+  margin-left:6px;
+}
+
+/* Bangbathbxy */
+.card.bangbathbxy{
   box-shadow:
-    0 0 25px rgba(255,60,60,var(--glow)),
-    0 0 45px rgba(255,60,60,.45);
+    inset 0 0 0 1px rgba(255,80,80,.22),
+    inset 0 0 28px rgba(255,60,60,.05),
+    0 25px 50px rgba(0,0,0,.9);
 }
 
-/* MEMBER */
-.card.member .name:hover{
-  color:var(--member-color);
-  text-shadow:0 0 10px rgba(77,166,255,.8);
-}
-
-.card.member:hover .avatar{
-  border-color:var(--member-color);
+/* Bangbathbxby */
+.card.bangbathbxby{
   box-shadow:
-    0 0 22px rgba(77,166,255,.55),
-    0 0 40px rgba(77,166,255,.35);
+    inset 0 0 0 1px rgba(180,120,255,.22),
+    inset 0 0 28px rgba(180,120,255,.05),
+    0 25px 50px rgba(0,0,0,.9);
 }
 
-/* MEMBER LADY */
-.card.member-lady .name:hover{
-  color:var(--lady-color);
-  text-shadow:0 0 10px rgba(255,102,204,.9);
-}
-
-.card.member-lady:hover .avatar{
-  border-color:var(--lady-color);
+/* Member */
+.card.member{
   box-shadow:
-    0 0 22px rgba(255,102,204,.6),
-    0 0 40px rgba(255,102,204,.4);
+    inset 0 0 0 1px rgba(120,180,255,.22),
+    inset 0 0 28px rgba(120,180,255,.05),
+    0 25px 50px rgba(0,0,0,.9);
 }
 
 /* ================= FOOTER ================= */
-.footer{
+footer{
   text-align:center;
   padding:30px;
-  font-size:14px;
   opacity:.6;
 }
