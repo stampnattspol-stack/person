@@ -279,3 +279,87 @@ button:hover {
   margin-left:6px;
 }
 
+/* ================== LEADER GOD MODE ================== */
+
+/* ขอบสายรุ้งหมุน */
+.card.leader{
+  border:2px solid transparent;
+  background:
+    linear-gradient(#000,#000) padding-box,
+    linear-gradient(
+      270deg,
+      #ff004c,
+      #ff9a00,
+      #ffee00,
+      #00ff85,
+      #00c3ff,
+      #7b00ff,
+      #ff004c
+    ) border-box;
+  animation:borderMove 6s linear infinite;
+}
+
+@keyframes borderMove{
+  0%{background-position:0% 50%}
+  100%{background-position:400% 50%}
+}
+
+/* Aura พลังรอบตัว */
+.card.leader::before{
+  content:'';
+  position:absolute;
+  inset:-6px;
+  border-radius:20px;
+  background:conic-gradient(
+    #ffd700,
+    #ff3b3b,
+    #ffd700,
+    #ff3b3b,
+    #ffd700
+  );
+  filter:blur(18px);
+  opacity:.55;
+  z-index:-1;
+  animation:spin 5s linear infinite;
+}
+
+@keyframes spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+/* Avatar Leader ขั้นเทพ */
+.card.leader .avatar{
+  position:relative;
+  background:
+    radial-gradient(circle,#ffd70066,transparent 65%),
+    linear-gradient(135deg,#ffd700,#ff3b3b);
+  box-shadow:
+    0 0 25px #ffd700,
+    0 0 55px #ff3b3b;
+}
+
+/* มงกุฎลอย */
+.card.leader .avatar::after{
+  content:"👑";
+  position:absolute;
+  top:-28px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:28px;
+  animation:crownFloat 2.5s ease-in-out infinite;
+  filter:drop-shadow(0 0 10px gold);
+}
+
+@keyframes crownFloat{
+  0%,100%{transform:translate(-50%,0)}
+  50%{transform:translate(-50%,-10px)}
+}
+
+/* Hover พลังระเบิด */
+.card.leader:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:
+    0 0 40px #ffd700,
+    0 0 80px #ff3b3b;
+}
