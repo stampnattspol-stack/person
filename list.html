@@ -68,7 +68,7 @@ body{
   box-shadow:0 10px 35px rgba(207,207,207)
 }
 
-/* ---------- AVATAR + GLOW ---------- */
+/* ---------- AVATAR ---------- */
 .avatar{
   width:120px;
   height:120px;
@@ -78,10 +78,10 @@ body{
   position:relative;
   background:
     radial-gradient(circle at center,#383838,transparent 65%),
-    linear-gradient(135deg,#FFFFFF,#333333);
+    linear-gradient(135deg,#fff,#333);
   box-shadow:
-    0 0 15px #B8B8B8,
-    0 0 30px #FFFFFF;
+    0 0 15px #b8b8b8,
+    0 0 30px #fff;
 }
 
 .avatar img{
@@ -89,35 +89,9 @@ body{
   height:100%;
   border-radius:50%;
   object-fit:cover;
-  background:#000;
 }
 
-/* ---------- LEADER SPECIAL (ของเดิม) ---------- */
-.card.leader .avatar{
-  background:
-    radial-gradient(circle,#ffd70055,transparent 65%),
-    linear-gradient(135deg,#ffd700,#ff3b3b);
-  box-shadow:
-    0 0 20px #ffd700,
-    0 0 45px #ff3b3b;
-}
-
-.card.leader::after{
-  content:"LEADER";
-  position:absolute;
-  top:12px;
-  right:12px;
-  font-size:11px;
-  padding:4px 8px;
-  border-radius:10px;
-  background:#ff3b3b;
-  color:#fff;
-}
-
-/* ================================================= */
-/* 🔥🔥🔥 เพิ่ม LEADER EFFECT ขั้นเทพ (โค้ดใหม่) 🔥🔥🔥 */
-/* ================================================= */
-
+/* ---------- LEADER EFFECT ---------- */
 .card.leader{
   animation:leaderPulse 2.5s infinite;
 }
@@ -128,7 +102,15 @@ body{
   100%{box-shadow:0 0 25px #ffd700}
 }
 
-/* วงแหวนหมุน */
+.card.leader .avatar{
+  background:
+    radial-gradient(circle,#ffd70055,transparent 65%),
+    linear-gradient(135deg,#ffd700,#ff3b3b);
+  box-shadow:
+    0 0 20px #ffd700,
+    0 0 45px #ff3b3b;
+}
+
 .card.leader .avatar::before{
   content:"";
   position:absolute;
@@ -139,11 +121,9 @@ body{
 }
 
 @keyframes spin{
-  from{transform:rotate(0deg)}
   to{transform:rotate(360deg)}
 }
 
-/* มงกุฎลอย */
 .card.leader .avatar::after{
   content:"👑";
   position:absolute;
@@ -155,22 +135,24 @@ body{
 }
 
 @keyframes crownFloat{
-  0%{transform:translate(-50%,0)}
+  0%,100%{transform:translate(-50%,0)}
   50%{transform:translate(-50%,-10px)}
-  100%{transform:translate(-50%,0)}
+}
+
+.card.leader::after{
+  content:"LEADER";
+  position:absolute;
+  top:12px;
+  right:12px;
+  font-size:11px;
+  padding:4px 8px;
+  border-radius:10px;
+  background:#ff3b3b;
 }
 
 /* ---------- TEXT ---------- */
 .name{font-size:18px;font-weight:600}
-.role{font-size:14px;color:#FF5100;margin-top:4px}
-
-.social a{
-  display:inline-block;
-  margin-top:10px;
-  color:#1A70D9;
-  text-decoration:none;
-  font-size:14px
-}
+.role{font-size:14px;color:#ff5100}
 
 .footer{
   text-align:center;
@@ -178,65 +160,64 @@ body{
   color:#aaa;
   font-size:14px
 }
+
+/* ---------- MUSIC PANEL ---------- */
+.music-panel{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 16px;
+  background:rgba(0,0,0,.65);
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:30px;
+  backdrop-filter:blur(8px);
+  z-index:9999;
+}
+
+.music-panel button{
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.music-panel input{
+  width:90px;
+}
 </style>
 </head>
 
 <body>
 
-<!-- ================= เพลงหน้าเว็บ (เพิ่มใหม่) ================= -->
-<audio id="bgm" autoplay loop>
-  <source src="https://cdn.discordapp.com/attachments/1454149098763718870/1463083573450903634/Playboi_Carti_-_WAKE_UP_F1LTHY_with_Travis_Scott_Official_Audio.mp3?ex=69708a42&is=696f38c2&hm=de72615b1a3eb39bf8e8be898566be06d679d7165d942d4e2b58708b1466c3db&" type="audio/mpeg">
+<!-- ===== MUSIC ===== -->
+<audio id="bg-music" autoplay loop>
+  <source src="https://cdn.discordapp.com/attachments/1454149098763718870/1463083573450903634/Playboi_Carti_-_WAKE_UP_F1LTHY_with_Travis_Scott_Official_Audio.mp3" type="audio/mpeg">
 </audio>
 
-<button onclick="
-const m=document.getElementById('bgm');
-if(m.paused){m.play();this.innerText='🔊 Music On'}
-else{m.pause();this.innerText='🔇 Music Off'}
-"
-style="
-position:fixed;
-bottom:20px;
-right:20px;
-z-index:9999;
-padding:10px 18px;
-border-radius:30px;
-border:1px solid #fff;
-background:rgba(0,0,0,.6);
-color:#fff;
-cursor:pointer;
-">
-🔊 Music On
-</button>
-<!-- ============================================================ -->
+<div class="music-panel">
+  <button id="playBtn">❚❚</button>
+  <input id="volume" type="range" min="0" max="100" value="50">
+  <span id="vol-label">50%</span>
+</div>
 
 <div class="header">
   <h1>Person List</h1>
   <div class="search-box">
-    <input type="text" id="search" placeholder="search...." onkeyup="render()">
+    <input type="text" placeholder="search....">
   </div>
 </div>
 
 <div class="section">
   <div class="section-title">Leader</div>
-  <div class="grid" id="leader"></div>
+  <div class="grid"></div>
 </div>
 
-<div class="section">
-  <div class="section-title">Bangbathbxy</div>
-  <div class="grid" id="bangbathbxy"></div>
-</div>
+<div class="footer">© 2026 Bangbathbxy</div>
 
-<div class="section">
-  <div class="section-title">Bangbathbxby</div>
-  <div class="grid" id="bangbathbxby"></div>
-</div>
-
-<div class="section">
-  <div class="section-title">Member</div>
-  <div class="grid" id="member"></div>
-</div>
-
-<!-- ===== SCRIPT ของคุณ (ไม่แตะ) ===== -->
 <script>
 const music = document.getElementById("bg-music");
 const playBtn = document.getElementById("playBtn");
@@ -245,7 +226,6 @@ const label = document.getElementById("vol-label");
 
 music.volume = volume.value / 100;
 
-/* PLAY / PAUSE */
 playBtn.onclick = () => {
   if (music.paused) {
     music.play();
@@ -256,13 +236,11 @@ playBtn.onclick = () => {
   }
 };
 
-/* VOLUME CONTROL */
 volume.oninput = () => {
   music.volume = volume.value / 100;
   label.textContent = volume.value + "%";
 };
 </script>
 
-<div class="footer">© 2026 Bangbathbxy</div>
 </body>
 </html>
