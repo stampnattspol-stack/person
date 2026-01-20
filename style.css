@@ -1,3 +1,6 @@
+/* =========================================================
+   BASE / RESET
+========================================================= */
 * {
   margin: 0;
   padding: 0;
@@ -5,15 +8,20 @@
   font-family: system-ui, sans-serif;
 }
 
-body {
+html, body {
+  margin: 0;
+  height: 100%;
   min-height: 100vh;
   background: #000;
   color: #fff;
 }
 
-/* ================= LANDING ================= */
+/* =========================================================
+   LANDING
+========================================================= */
 .landing {
-  background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXFsanllb21iemVqMHhhZW1vcnF0OWkyd2lyOG9sMDlvY2l1YmFjaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WhJawCgeNXGN2/giphy.gif") center / cover no-repeat fixed;
+  background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXFsanllb21iemVqMHhhZW1vcnF0OWkyd2lyOG9sMDlvY2l1YmFjaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WhJawCgeNXGN2/giphy.gif")
+    center / cover no-repeat fixed;
 }
 
 .overlay {
@@ -28,8 +36,9 @@ body {
 
 .gang-title {
   font-size: 42px;
-  color: #b266ff;
+  color: #fff;
   margin-bottom: 10px;
+  text-shadow: 0 0 12px rgba(240,248,255,.9);
 }
 
 .gang-sub {
@@ -51,108 +60,32 @@ body {
   color: #000;
 }
 
-/* ================= LIST ================= */
-.page-title {
-  text-align: center;
-  margin: 40px 0;
-}
-
-section {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
-}
-
-.role {
-  margin: 20px 0;
-  font-size: 22px;
-}
-
-.leader { color: gold; }
-.member { color: #4da6ff; }
-.rookie { color: #ff6666; }
-
-.card {
-  background: #111;
-  border-radius: 16px;
-  padding: 20px;
-  width: 220px;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* ===== AVATAR ===== */
-.avatar {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  margin: auto;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.35);
-}
-
-/* 🔥 วงขอบ */
-.avatar::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  z-index: 3;
-  pointer-events: none;
-}
-
-/* 🔥 พื้นด้านใน (ขาว ก่อนใส่รูป) */
-.avatar::after {
-  content: "";
-  position: absolute;
-  inset: 4px;          /* ปรับความหนาขอบได้ */
-  border-radius: 50%;
-  background: #ffff;
-  z-index: 1;
-}
-
-/* ===== รูป ===== */
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  position: relative;
-  z-index: 2;
-}
-
-.leader-border { border: 3px solid gold; }
-.member-border { border: 3px solid #4da6ff; }
-
-.leader-text { color: gold; }
-.member-text { color: #4da6ff; }
-
-.link {
-  display: block;
-  margin-top: 10px;
-  color: #4da6ff;
-  text-decoration: none;
-}
-
-footer {
-  text-align: center;
-  padding: 30px;
-  opacity: 0.6;
-}
-
+/* =========================================================
+   HEADER
+========================================================= */
 .header{
   text-align:center;
   padding:80px 20px;
   background:
     linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-    url('https://cdn.discordapp.com/attachments/1454149098763718870/1454149176643289378/399.png?ex=696f04b4&is=696db334&hm=f7d6b34d94a12a31e3c2484cf553489080bdfeae5921318c1f896ea215b8afa6&')
+    url('https://cdn.discordapp.com/attachments/1454149098763718870/1454149176643289378/399.png')
     center/cover no-repeat;
 }
 
+/* =========================================================
+   GRID / SECTION
+========================================================= */
+.section{
+  max-width: 900px;
+  margin:40px auto;
+  padding:30px 25px;
+  background:linear-gradient(180deg,#0f130f,#0a0c0a);
+  border-radius:18px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    0 0 40px rgba(0,0,0,.8);
+}
 
-/* ================= GRID ================= */
 .grid{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -160,103 +93,70 @@ footer {
   margin: 20px 0 40px;
 }
 
-/* ================= SORT ORDER ================= */
-/* default = Member */
+/* =========================================================
+   CARD
+========================================================= */
 .card{
-  order: 2;
+  background:#111;
+  border-radius:16px;
+  padding:20px;
+  width:220px;
+  text-align:center;
+  position:relative;
+  order:2;
+  transition:.25s;
 }
 
-/* Leader มาก่อน */
-.card.leader{
-  order: 1;
+.card:hover{
+  transform: translateY(-6px);
 }
 
-/* Member Lady มาหลัง Member */
-.card.member-lady{
-  order: 3;
+/* sort order */
+.card.leader{ order:1; }
+.card.member-lady{ order:3; }
+
+/* =========================================================
+   AVATAR
+========================================================= */
+.avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  margin:auto;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 0 15px rgba(255,0,0,.35);
 }
 
-html, body {
-  margin: 0;
-  height: 100%;
-  font-family: system-ui, sans-serif;
+.avatar::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  border:2px solid #fff;
+  z-index:3;
 }
 
-.hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
+.avatar::after{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border-radius:50%;
+  background:#fff;
+  z-index:1;
 }
 
-/* VIGNETTE + DARK */
-.overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(0,0,0,0.25) 0%,
-      rgba(0,0,0,0.55) 45%,
-      rgba(0,0,0,0.85) 100%
-    );
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:relative;
+  z-index:2;
 }
 
-/* CONTENT */
-.content {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-}
-
-.content h1 {
-  font-size: 42px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.content p {
-  opacity: 0.8;
-  margin: 10px 0 25px;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-/* BUTTON */
-button {
-  padding: 12px 28px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.12);
-  color: white;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-}
-
-button:hover {
-  background: rgba(255,255,255,0.2);
-}
-
-.gang-title {
-  color: #FFFF; /* เปลี่ยนสีตรงนี้ */
-  text-shadow: 0 0 12px rgba(240, 248, 255);
-}
-
-.section{
-  background:linear-gradient(180deg,#0f130f,#0a0c0a);
-  border-radius:18px;
-  padding:30px 25px;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.04),
-    0 0 40px rgba(0,0,0,.8);
-  margin:40px auto;
-}
-
+/* =========================================================
+   LEADER GOD MODE
+========================================================= */
 .card.leader{
   box-shadow:
     0 0 0 1px rgba(255,60,60,.4),
@@ -269,97 +169,95 @@ button:hover {
     0 0 45px rgba(255,0,0,.6);
 }
 
-.card.leader .avatar{
-  border-color:#ff3b3b;
-  box-shadow:0 0 20px rgba(255,0,0,.6);
-}
-
-.crown{
-  color:#ff3b3b;
-  margin-left:6px;
-}
-
-/* ================== LEADER GOD MODE ================== */
-
-/* ขอบสายรุ้งหมุน */
-.card.leader{
-  border:2px solid transparent;
-  background:
-    linear-gradient(#000,#000) padding-box,
-    linear-gradient(
-      270deg,
-      #ff004c,
-      #ff9a00,
-      #ffee00,
-      #00ff85,
-      #00c3ff,
-      #7b00ff,
-      #ff004c
-    ) border-box;
-  animation:borderMove 6s linear infinite;
-}
-
-@keyframes borderMove{
-  0%{background-position:0% 50%}
-  100%{background-position:400% 50%}
-}
-
-/* Aura พลังรอบตัว */
+/* Aura รอบการ์ด */
 .card.leader::before{
-  content:'';
+  content:"";
   position:absolute;
   inset:-6px;
   border-radius:20px;
   background:conic-gradient(
-    #ffd700,
-    #ff3b3b,
-    #ffd700,
-    #ff3b3b,
-    #ffd700
+    gold,#ff3b3b,gold,#ff3b3b,gold
   );
-  filter:blur(18px);
-  opacity:.55;
+  filter:blur(14px);
+  opacity:.75;
   z-index:-1;
-  animation:spin 5s linear infinite;
+  animation: leaderAura 6s linear infinite;
 }
 
-@keyframes spin{
-  from{transform:rotate(0deg)}
-  to{transform:rotate(360deg)}
+@keyframes leaderAura{
+  to{ transform:rotate(360deg); }
 }
 
-/* Avatar Leader ขั้นเทพ */
-.card.leader .avatar{
-  position:relative;
-  background:
-    radial-gradient(circle,#ffd70066,transparent 65%),
-    linear-gradient(135deg,#ffd700,#ff3b3b);
-  box-shadow:
-    0 0 25px #ffd700,
-    0 0 55px #ff3b3b;
+/* Avatar Aura */
+.card.leader .avatar::after{
+  background:conic-gradient(#ffd700,#ff3b3b,#ffd700);
+  animation: avatarSpin 4s linear infinite;
+}
+
+@keyframes avatarSpin{
+  to{ transform:rotate(360deg); }
 }
 
 /* มงกุฎลอย */
-.card.leader .avatar::after{
+.card.leader .avatar::before{
   content:"👑";
   position:absolute;
-  top:-28px;
+  top:-22px;
   left:50%;
   transform:translateX(-50%);
-  font-size:28px;
+  font-size:22px;
+  filter:drop-shadow(0 0 8px gold);
   animation:crownFloat 2.5s ease-in-out infinite;
-  filter:drop-shadow(0 0 10px gold);
 }
 
 @keyframes crownFloat{
-  0%,100%{transform:translate(-50%,0)}
-  50%{transform:translate(-50%,-10px)}
+  0%,100%{ transform:translate(-50%,0); }
+  50%{ transform:translate(-50%,-8px); }
 }
 
-/* Hover พลังระเบิด */
-.card.leader:hover{
-  transform:translateY(-10px) scale(1.03);
+.card.leader .name{
+  color:#ffd700;
+  text-shadow:
+    0 0 8px rgba(255,215,0,.9),
+    0 0 18px rgba(255,59,59,.7);
+}
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+.music-btn{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  font-size:22px;
+  color:#000;
+  background:radial-gradient(circle,#fff,#ffd700 40%,#ff3b3b 75%);
   box-shadow:
-    0 0 40px #ffd700,
-    0 0 80px #ff3b3b;
+    0 0 15px rgba(255,215,0,.8),
+    0 0 35px rgba(255,59,59,.7);
+  z-index:9999;
+}
+
+.music-btn.playing{
+  animation: musicPulse 1.8s infinite;
+}
+
+@keyframes musicPulse{
+  0%{ box-shadow:0 0 15px rgba(255,215,0,.6); }
+  50%{ box-shadow:0 0 40px rgba(255,59,59,.9); }
+  100%{ box-shadow:0 0 15px rgba(255,215,0,.6); }
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
 }
