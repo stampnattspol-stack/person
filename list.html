@@ -235,6 +235,12 @@ function render(){
   });
 }
 render();
+
+function openAdmin(){adminPanel.style.display='flex'}
+function login(){if(adminPass.value===ADMIN_PASSWORD){loginBox.style.display='none';manageBox.style.display='block'}else alert('รหัสไม่ถูกต้อง')}
+function logout(){adminPanel.style.display='none';loginBox.style.display='block';manageBox.style.display='none'}
+function addPerson(){people.push({name:nameInput.value,role:roleInput.value,img:imgInput.value,fb:fbInput.value});render()}
+  
 </script>
 
 <!-- 🔐 ADMIN BUTTON (ไม่ผูกอะไร) -->
