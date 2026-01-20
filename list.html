@@ -269,18 +269,23 @@ function render(){
    const d = document.createElement("div");
    d.className = "card " + p.role.toLowerCase();
 
-   d.innerHTML = `
-     <div class="avatar">
-       <img src="${p.img}">
-     </div>
+  d.innerHTML = `
+  <div class="avatar">
+    <img src="${p.img}">
+  </div>
 
-     <div class="name">${p.name}</div>
-     <div class="role">${p.role}</div>
+  <div class="name">${p.name}</div>
+  <div class="role">${p.role}</div>
 
-     <div class="social">
-       <a href="${p.fb}" target="_blank">Facebook</a>
-     </div>
-   `;
+  <div class="social">
+    <a href="${p.fb}" target="_blank"
+       style="text-decoration:none;color:#1A70D9;"
+       onmouseover="this.style.color='#FFFF'"
+       onmouseout="this.style.color='#FFFF'">
+       Facebook
+    </a>
+  </div>
+`;
 
    if(p.role === "Leader") leader.appendChild(d);
    else if(p.role === "Bangbathbxy") bangbathbxy.appendChild(d);
