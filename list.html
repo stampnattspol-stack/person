@@ -143,7 +143,20 @@ body{
 /* ---------- TEXT ---------- */
 .name{font-size:18px;font-weight:600}
 .role{font-size:14px;color:#ff5100}
+.social a{
+  display:inline-block;
+  margin-top:10px;
+  color:#1A70D9;
+  text-decoration:none;
+  font-size:14px
+}
 
+.footer{
+  text-align:center;
+  padding:30px;
+  color:#aaa;
+  font-size:14px
+} 
 /* ---------- MUSIC PANEL ---------- */
 .music-panel{
   position:fixed;
@@ -266,9 +279,13 @@ function render(){
   const d=document.createElement("div");
   d.className="card "+p.role.toLowerCase();
   d.innerHTML=`
-   <div class="avatar"><img src="${p.fb}"></div>
+   <div class="avatar"><img src="${p.img}"></div>
    <div class="name">${p.name}</div>
    <div class="role">${p.role}</div>`;
+   <div class="social">
+          <a href="${p.fb}" target="_blank">Facebook</a>
+        </div>
+      </div>`;
   if(p.role==="Leader")leader.appendChild(d);
   else if(p.role==="Bangbathbxy")bangbathbxy.appendChild(d);
   else if(p.role==="Bangbathbxby")bangbathbxby.appendChild(d);
