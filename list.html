@@ -195,62 +195,37 @@ const people=[
 function render(){
   const q = document.getElementById('search').value.toLowerCase();
 
- <script>
-const ADMIN_PASSWORD = "1234"; // 🔐 เปลี่ยนรหัสตรงนี้
+  leader.innerHTML = '';
+  bangbathbxy.innerHTML = '';
+  bangbathbxby.innerHTML = '';
+  member.innerHTML = '';
 
-const leader = document.getElementById('leader');
-const bangbathbxy = document.getElementById('bangbathbxy');
-const bangbathbxby = document.getElementById('bangbathbxby');
-const member = document.getElementById('member');
+  people
+    .filter(p => p.name.toLowerCase().includes(q))
+    .forEach(p => {
 
-let people = JSON.parse(localStorage.getItem('people')) || [
-  {name:'Pond Bangbathbxy', role:'Leader', img:'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG91aWMxaTM4OHNzYnhreWZsZmUzazJ6dzRyZXNzMms3dDZzNmRtciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RSPAUsEy1azRu/giphy.gif', fb:'https://www.facebook.com/pond.vorpard'}
-];
+      const isLeader = p.role === 'Leader';		
 
-function render(){
-  const q = (search.value||'').toLowerCase();
-  leader.innerHTML = bangbathbxy.innerHTML = bangbathbxby.innerHTML = member.innerHTML = '';
+      const card = `
+      <div class="card ${isLeader ? 'leader' : ''}">
+        <div class="avatar">
+          <img src="${p.img}">
+        </div>
+        <div class="name">${p.name}</div>
+        <div class="role">${p.role}</div>
+        <div class="social">
+          <a href="${p.fb}" target="_blank">Facebook</a>
+        </div>
+      </div>`;
 
-  people.filter(p=>p.name.toLowerCase().includes(q)).forEach(p=>{
-    const card = `
-    <div class="card ${p.role==='Leader'?'leader':''}">
-      <div class="avatar"><img src="${p.img}"></div>
-      <div class="name">${p.name}</div>
-      <div class="role">${p.role}</div>
-      <div class="social"><a href="${p.fb}" target="_blank">Facebook</a></div>
-    </div>`;
-    if(p.role==='Leader') leader.innerHTML+=card;
-    else if(p.role==='Bangbathbxy') bangbathbxy.innerHTML+=card;
-    else if(p.role==='Bangbathbxby') bangbathbxby.innerHTML+=card;
-    else member.innerHTML+=card;
-  });
-
-  localStorage.setItem('people', JSON.stringify(people));
+      if(p.role === 'Leader') leader.innerHTML += card;
+      else if(p.role === 'Bangbathbxy') bangbathbxy.innerHTML += card;
+      else if(p.role === 'Bangbathbxby') bangbathbxby.innerHTML += card;
+      else member.innerHTML += card;
+    });
 }
+
 render();
-
-/* ADMIN */
-function openAdmin(){adminPanel.style.display='flex'}
-function login(){
-  if(adminPass.value===ADMIN_PASSWORD){
-    loginBox.style.display='none';
-    manageBox.style.display='block';
-  }else alert('รหัสไม่ถูกต้อง');
-}
-function logout(){
-  adminPanel.style.display='none';
-  loginBox.style.display='block';
-  manageBox.style.display='none';
-}
-function addPerson(){
-  people.push({
-    name:nameInput.value,
-    role:roleInput.value,
-    img:imgInput.value,
-    fb:fbInput.value
-  });
-  render();
-}
 </script>
 
 <div class="footer">© 2026 Bangbathbxy</div>
