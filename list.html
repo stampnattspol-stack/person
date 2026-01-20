@@ -271,17 +271,10 @@ function render(){
 
    d.innerHTML = `
      <div class="avatar">
-       <a href="${p.fb}" target="_blank">
-         <img src="${p.img}">
-       </a>
+       <img src="${p.img}">
      </div>
 
-     <div class="name">
-       <a href="${p.fb}" target="_blank" style="color:#fff;text-decoration:none">
-         ${p.name}
-       </a>
-     </div>
-
+     <div class="name">${p.name}</div>
      <div class="role">${p.role}</div>
 
      <div class="social">
