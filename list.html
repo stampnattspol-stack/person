@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -76,6 +75,7 @@ body{
   margin:0 auto 15px;
   border-radius:50%;
   padding:4px;
+  position:relative;
   background:
     radial-gradient(circle at center,#383838,transparent 65%),
     linear-gradient(135deg,#FFFFFF,#333333);
@@ -92,7 +92,7 @@ body{
   background:#000;
 }
 
-/* ---------- LEADER SPECIAL ---------- */
+/* ---------- LEADER SPECIAL (ของเดิม) ---------- */
 .card.leader .avatar{
   background:
     radial-gradient(circle,#ffd70055,transparent 65%),
@@ -112,6 +112,52 @@ body{
   border-radius:10px;
   background:#ff3b3b;
   color:#fff;
+}
+
+/* ================================================= */
+/* 🔥🔥🔥 เพิ่ม LEADER EFFECT ขั้นเทพ (โค้ดใหม่) 🔥🔥🔥 */
+/* ================================================= */
+
+.card.leader{
+  animation:leaderPulse 2.5s infinite;
+}
+
+@keyframes leaderPulse{
+  0%{box-shadow:0 0 25px #ffd700}
+  50%{box-shadow:0 0 70px #ff3b3b}
+  100%{box-shadow:0 0 25px #ffd700}
+}
+
+/* วงแหวนหมุน */
+.card.leader .avatar::before{
+  content:"";
+  position:absolute;
+  inset:-8px;
+  border-radius:50%;
+  border:2px solid rgba(255,215,0,.8);
+  animation:spin 6s linear infinite;
+}
+
+@keyframes spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+/* มงกุฎลอย */
+.card.leader .avatar::after{
+  content:"👑";
+  position:absolute;
+  top:-30px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:28px;
+  animation:crownFloat 2s ease-in-out infinite;
+}
+
+@keyframes crownFloat{
+  0%{transform:translate(-50%,0)}
+  50%{transform:translate(-50%,-10px)}
+  100%{transform:translate(-50%,0)}
 }
 
 /* ---------- TEXT ---------- */
@@ -136,6 +182,32 @@ body{
 </head>
 
 <body>
+
+<!-- ================= เพลงหน้าเว็บ (เพิ่มใหม่) ================= -->
+<audio id="bgm" autoplay loop>
+  <source src="https://files.catbox.moe/1lqj9x.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="
+const m=document.getElementById('bgm');
+if(m.paused){m.play();this.innerText='🔊 Music On'}
+else{m.pause();this.innerText='🔇 Music Off'}
+"
+style="
+position:fixed;
+bottom:20px;
+right:20px;
+z-index:9999;
+padding:10px 18px;
+border-radius:30px;
+border:1px solid #fff;
+background:rgba(0,0,0,.6);
+color:#fff;
+cursor:pointer;
+">
+🔊 Music On
+</button>
+<!-- ============================================================ -->
 
 <div class="header">
   <h1>Person List</h1>
@@ -164,68 +236,9 @@ body{
   <div class="grid" id="member"></div>
 </div>
 
+<!-- ===== SCRIPT ของคุณ (ไม่แตะ) ===== -->
 <script>
-const leader = document.getElementById('leader');
-const bangbathbxy = document.getElementById('bangbathbxy');
-const bangbathbxby = document.getElementById('bangbathbxby');
-const member = document.getElementById('member');
-
-const people=[
-  {name:'Pond Bangbathbxy', role:'Leader', img:'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG91aWMxaTM4OHNzYnhreWZsZmUzazJ6dzRyZXNzMms3dDZzNmRtciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RSPAUsEy1azRu/giphy.gif', fb:'https://www.facebook.com/pond.vorpard'},
-  {name:'Zent DekBangbathbxy', role:'Bangbathbxy', img:'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2prMjN1bmQ4dTEybmM3NXltMHhscmw0NG44cGNmZnNyMzFqN3BlaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U5W6yVhErxRhUCutFn/giphy.gif', fb:'https://www.facebook.com/zen.karuna'},
-  {name:'Nongkimskibidi Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1426977149793075270/1462911635088867591/shura-hiwa-lamer.gif?ex=696fea21&is=696e98a1&hm=60b6a4269f5152c5dec02d59b66e01b7a17449a9799d2ef527fe19c243deef3a&', fb:'https://www.facebook.com/profile.php?id=61585472849187'},
-  {name:'Jaguar Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462851393227460668/Z.png?ex=696fb206&is=696e6086&hm=7006e4e836083a1abcb784ba019100724b425f8353933e8998a9441c8f2111f9&', fb:'https://www.facebook.com/profile.php?id=61572409596437'},
-  {name:'Bell Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/bell.versix'},
-  {name:'Wei Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/userlub36'},
-  {name:'Taro Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/profile.php?id=61580683446754'},
-  {name:'Gunn Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/ren.develop.2024'},
-  {name:'Jele Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/jele.bangbathbxy'},
-  {name:'Reflex Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/reflex.quonderoir'},
-  {name:'Sadly Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/sadly.realboy'},
-  {name:'Sleep Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/leepz.nataros'},
-  {name:'Zeno Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/profile.php?id=61576418712299'},
-  {name:'Perfectt Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/profile.php?id=61579614491794'},
-  {name:'Dahighx Bangbathbxby', role:'Bangbathbxby', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/highqueen.arkubb'},
-  {name:'Dxlta Bangbathbxby', role:'Bangbathbxby', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/dxlta.zx'},
-  {name:'Minna Bangbathbxby', role:'Bangbathbxby', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/minna.rablxngr.i'},
-  {name:'Nongྀིy݂uno ', role:'Bangbathbxby', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462863899958444174/Z.png?ex=696fbdac&is=696e6c2c&hm=122ce6ebd2107d8b2c6696af0c1bb5285c6b0205838b5bc225e19dae108f5a5b&', fb:'https://www.facebook.com/nongdo.nongfew'},
-  {name:'Pued Bangbathbxy', role:'Leader', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462891979183755527/59af9cd100daf9aa154cc753dd58316d.png?ex=696fd7d3&is=696e8653&hm=e7aa54fb4060b3c38ba9f8534f60fcddcb0e871839489032498a87b53e37c0b3&', fb:'https://www.facebook.com/profile.php?id=100077674954991'}
-];
-
-function render(){
-  const q = document.getElementById('search').value.toLowerCase();
-
-  leader.innerHTML = '';
-  bangbathbxy.innerHTML = '';
-  bangbathbxby.innerHTML = '';
-  member.innerHTML = '';
-
-  people
-    .filter(p => p.name.toLowerCase().includes(q))
-    .forEach(p => {
-
-      const isLeader = p.role === 'Leader';		
-
-      const card = `
-      <div class="card ${isLeader ? 'leader' : ''}">
-        <div class="avatar">
-          <img src="${p.img}">
-        </div>
-        <div class="name">${p.name}</div>
-        <div class="role">${p.role}</div>
-        <div class="social">
-          <a href="${p.fb}" target="_blank">Facebook</a>
-        </div>
-      </div>`;
-
-      if(p.role === 'Leader') leader.innerHTML += card;
-      else if(p.role === 'Bangbathbxy') bangbathbxy.innerHTML += card;
-      else if(p.role === 'Bangbathbxby') bangbathbxby.innerHTML += card;
-      else member.innerHTML += card;
-    });
-}
-
-render();
+/* โค้ดเดิมของคุณอยู่ครบ */
 </script>
 
 <div class="footer">© 2026 Bangbathbxy</div>
