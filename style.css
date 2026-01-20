@@ -279,25 +279,3 @@ button:hover {
   margin-left:6px;
 }
 
-/* ---------- ADMIN BUTTON ---------- */
-.admin-btn{
-  position:fixed;
-  bottom:24px;
-  right:24px;
-  background:linear-gradient(135deg,#ff3b3b,#ff7b00);
-  color:#fff;
-  border:none;
-  padding:14px 22px;
-  border-radius:999px;
-  font-size:15px;
-  font-weight:600;
-  cursor:pointer;
-  box-shadow:0 0 20px rgba(255,59,59,.6);
-  transition:.25s;
-  z-index:9999;
-}
-
-.admin-btn:hover{
-  transform:translateY(-4px) scale(1.05);
-  box-shadow:0 0 35px rgba(255,120,0,.9);
-}
