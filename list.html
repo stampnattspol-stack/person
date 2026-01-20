@@ -88,7 +88,7 @@ body{
   object-fit:cover;
 }
 
-/* ---------- LEADER EFFECT ขั้นเทพ ---------- */
+/* ---------- LEADER EFFECT ---------- */
 .card.leader{
   animation:leaderPulse 2.5s infinite;
 }
@@ -140,9 +140,25 @@ body{
   background:#ff3b3b;
 }
 
-/* ---------- TEXT ---------- */
-.name{font-size:18px;font-weight:600}
-.role{font-size:14px;color:#ff5100}
+/* ---------- TEXT (เพิ่มตามที่ขอ) ---------- */
+.name{
+  font-size:18px;
+  font-weight:600
+}
+
+.role{
+  font-size:14px;
+  color:#FF5100;
+  margin-top:4px
+}
+
+.social a{
+  display:inline-block;
+  margin-top:10px;
+  color:#1A70D9;
+  text-decoration:none;
+  font-size:14px
+}
 
 /* ---------- MUSIC PANEL ---------- */
 .music-panel{
@@ -168,6 +184,7 @@ body{
 }
 .music-panel input{width:90px}
 
+/* ---------- FOOTER ---------- */
 .footer{
   text-align:center;
   padding:30px;
@@ -179,9 +196,9 @@ body{
 
 <body>
 
-<!-- ===== MUSIC ===== -->
+<!-- MUSIC -->
 <audio id="bg-music" autoplay loop>
-  <source src="https://cdn.discordapp.com/attachments/1454149098763718870/1463083573450903634/Playboi_Carti_-_WAKE_UP_F1LTHY_with_Travis_Scott_Official_Audio.mp3?ex=69708a42&is=696f38c2&hm=de72615b1a3eb39bf8e8be898566be06d679d7165d942d4e2b58708b1466c3db&">
+  <source src="https://cdn.discordapp.com/attachments/1454149098763718870/1463083573450903634/Playboi_Carti_-_WAKE_UP_F1LTHY_with_Travis_Scott_Official_Audio.mp3" type="audio/mpeg">
 </audio>
 
 <div class="music-panel">
@@ -220,7 +237,6 @@ body{
 <div class="footer">© 2026 Bangbathbxy</div>
 
 <script>
-/* ===== MUSIC CONTROL ===== */
 const music=document.getElementById("bg-music");
 const playBtn=document.getElementById("playBtn");
 const volume=document.getElementById("volume");
@@ -236,9 +252,14 @@ volume.oninput=()=>{
   label.textContent=volume.value+"%";
 };
 
-/* ===== DATA + RENDER ===== */
-let people=[
-  {name:'Pond Bangbathbxy', role:'Leader', img:'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG91aWMxaTM4OHNzYnhreWZsZmUzazJ6dzRyZXNzMms3dDZzNmRtciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RSPAUsEy1azRu/giphy.gif', fb:'https://www.facebook.com/pond.vorpard'},
+const leader=document.getElementById("leader");
+const bangbathbxy=document.getElementById("bangbathbxy");
+const bangbathbxby=document.getElementById("bangbathbxby");
+const member=document.getElementById("member");
+const search=document.getElementById("search");
+
+const people=[
+ {name:'Pond Bangbathbxy', role:'Leader', img:'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG91aWMxaTM4OHNzYnhreWZsZmUzazJ6dzRyZXNzMms3dDZzNmRtciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RSPAUsEy1azRu/giphy.gif', fb:'https://www.facebook.com/pond.vorpard'},
   {name:'Zent DekBangbathbxy', role:'Bangbathbxy', img:'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2prMjN1bmQ4dTEybmM3NXltMHhscmw0NG44cGNmZnNyMzFqN3BlaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U5W6yVhErxRhUCutFn/giphy.gif', fb:'https://www.facebook.com/zen.karuna'},
   {name:'Nongkimskibidi Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1426977149793075270/1462911635088867591/shura-hiwa-lamer.gif?ex=696fea21&is=696e98a1&hm=60b6a4269f5152c5dec02d59b66e01b7a17449a9799d2ef527fe19c243deef3a&', fb:'https://www.facebook.com/profile.php?id=61585472849187'},
   {name:'Jaguar Bangbathbxy', role:'Bangbathbxy', img:'https://cdn.discordapp.com/attachments/1454149098763718870/1462851393227460668/Z.png?ex=696fb206&is=696e6086&hm=7006e4e836083a1abcb784ba019100724b425f8353933e8998a9441c8f2111f9&', fb:'https://www.facebook.com/profile.php?id=61572409596437'},
@@ -260,19 +281,19 @@ let people=[
 ];
 
 function render(){
- const q=search.value.toLowerCase();
  leader.innerHTML=bangbathbxy.innerHTML=bangbathbxby.innerHTML=member.innerHTML="";
- people.filter(p=>p.name.toLowerCase().includes(q)).forEach(p=>{
-  const d=document.createElement("div");
-  d.className="card "+p.role.toLowerCase();
-  d.innerHTML=`
+ people.filter(p=>p.name.toLowerCase().includes(search.value.toLowerCase()))
+ .forEach(p=>{
+  const c=document.createElement("div");
+  c.className="card "+(p.role==="Leader"?"leader":"");
+  c.innerHTML=`
    <div class="avatar"><img src="${p.img}"></div>
    <div class="name">${p.name}</div>
    <div class="role">${p.role}</div>`;
-  if(p.role==="Leader")leader.appendChild(d);
-  else if(p.role==="Bangbathbxy")bangbathbxy.appendChild(d);
-  else if(p.role==="Bangbathbxby")bangbathbxby.appendChild(d);
-  else member.appendChild(d);
+  if(p.role==="Leader")leader.appendChild(c);
+  else if(p.role==="Bangbathbxy")bangbathbxy.appendChild(c);
+  else if(p.role==="Bangbathbxby")bangbathbxby.appendChild(c);
+  else member.appendChild(c);
  });
 }
 render();
