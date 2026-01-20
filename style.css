@@ -1,178 +1,281 @@
-/* ================= RESET ================= */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:system-ui,sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
 }
 
-html,body{
-  height:100%;
-  background:#000;
-  color:#fff;
+body {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
 }
 
-/* ================= HEADER / LANDING ================= */
+/* ================= LANDING ================= */
+.landing {
+  background: url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXFsanllb21iemVqMHhhZW1vcnF0OWkyd2lyOG9sMDlvY2l1YmFjaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WhJawCgeNXGN2/giphy.gif") center / cover no-repeat fixed;
+}
+
+.overlay {
+  min-height: 100vh;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.gang-title {
+  font-size: 42px;
+  color: #b266ff;
+  margin-bottom: 10px;
+}
+
+.gang-sub {
+  opacity: 0.8;
+  margin-bottom: 25px;
+}
+
+.enter-btn {
+  padding: 14px 28px;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.enter-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ================= LIST ================= */
+.page-title {
+  text-align: center;
+  margin: 40px 0;
+}
+
+section {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.role {
+  margin: 20px 0;
+  font-size: 22px;
+}
+
+.leader { color: gold; }
+.member { color: #4da6ff; }
+.rookie { color: #ff6666; }
+
+.card {
+  background: #111;
+  border-radius: 16px;
+  padding: 20px;
+  width: 220px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ===== AVATAR ===== */
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.35);
+}
+
+/* 🔥 วงขอบ */
+.avatar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* 🔥 พื้นด้านใน (ขาว ก่อนใส่รูป) */
+.avatar::after {
+  content: "";
+  position: absolute;
+  inset: 4px;          /* ปรับความหนาขอบได้ */
+  border-radius: 50%;
+  background: #ffff;
+  z-index: 1;
+}
+
+/* ===== รูป ===== */
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+.leader-border { border: 3px solid gold; }
+.member-border { border: 3px solid #4da6ff; }
+
+.leader-text { color: gold; }
+.member-text { color: #4da6ff; }
+
+.link {
+  display: block;
+  margin-top: 10px;
+  color: #4da6ff;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  opacity: 0.6;
+}
+
 .header{
   text-align:center;
   padding:80px 20px;
   background:
     linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-    url('https://cdn.discordapp.com/attachments/1454149098763718870/1454149176643289378/399.png')
+    url('https://cdn.discordapp.com/attachments/1454149098763718870/1454149176643289378/399.png?ex=696f04b4&is=696db334&hm=f7d6b34d94a12a31e3c2484cf553489080bdfeae5921318c1f896ea215b8afa6&')
     center/cover no-repeat;
 }
 
-.gang-title{
-  font-size:42px;
-  color:#fff;
-  text-shadow:0 0 12px rgba(240,248,255,.6);
-}
-
-.gang-sub{
-  opacity:.8;
-  margin-top:10px;
-}
-
-/* ================= SECTION ================= */
-.section{
-  max-width:1100px;
-  margin:40px auto;
-  padding:30px 25px;
-  background:linear-gradient(180deg,#0f130f,#0a0c0a);
-  border-radius:18px;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.04),
-    0 0 40px rgba(0,0,0,.8);
-}
-
-.section-title{
-  font-size:22px;
-  margin-bottom:20px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.section-title::before{
-  content:"";
-  width:4px;
-  height:22px;
-  background:#ff3b3b;
-  border-radius:4px;
-}
 
 /* ================= GRID ================= */
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin: 20px 0 40px;
 }
 
-/* ================= CARD (BASE – แบบรูปที่ส่ง) ================= */
+/* ================= SORT ORDER ================= */
+/* default = Member */
 .card{
-  background:linear-gradient(180deg,rgba(20,20,20,.95),rgba(8,8,8,.95));
-  border-radius:16px;
-  padding:22px 20px;
-  text-align:center;
-  position:relative;
-  transition:.35s ease;
+  order: 2;
+}
+
+/* Leader มาก่อน */
+.card.leader{
+  order: 1;
+}
+
+/* Member Lady มาหลัง Member */
+.card.member-lady{
+  order: 3;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: system-ui, sans-serif;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* VIGNETTE + DARK */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,0.25) 0%,
+      rgba(0,0,0,0.55) 45%,
+      rgba(0,0,0,0.85) 100%
+    );
+}
+
+/* CONTENT */
+.content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+.content h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.content p {
+  opacity: 0.8;
+  margin: 10px 0 25px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* BUTTON */
+button {
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.12);
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+button:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.gang-title {
+  color: #FFFF; /* เปลี่ยนสีตรงนี้ */
+  text-shadow: 0 0 12px rgba(240, 248, 255);
+}
+
+.section{
+  background:linear-gradient(180deg,#0f130f,#0a0c0a);
+  border-radius:18px;
+  padding:30px 25px;
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.06),
-    inset 0 0 25px rgba(255,255,255,.03),
-    0 20px 40px rgba(0,0,0,.85);
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    0 0 40px rgba(0,0,0,.8);
+  margin:40px auto;
 }
 
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.12),
-    inset 0 0 30px rgba(255,255,255,.05),
-    0 30px 60px rgba(0,0,0,.9);
-}
-
-/* ================= AVATAR ================= */
-.avatar{
-  width:100px;
-  height:100px;
-  margin:0 auto 14px;
-  border-radius:50%;
-  padding:3px;
-  background:rgba(255,255,255,.06);
-}
-
-.avatar img{
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  object-fit:cover;
-}
-
-/* ================= TEXT ================= */
-.name{
-  font-size:18px;
-  font-weight:600;
-}
-
-.role{
-  font-size:14px;
-  opacity:.7;
-  margin-top:4px;
-}
-
-.social a{
-  display:inline-block;
-  margin-top:10px;
-  color:#4da6ff;
-  text-decoration:none;
-  font-size:14px;
-}
-
-/* ================= RANK STYLE ================= */
-
-/* LEADER */
 .card.leader{
   box-shadow:
-    inset 0 0 0 1px rgba(255,200,120,.25),
-    inset 0 0 30px rgba(255,180,120,.06),
-    0 25px 50px rgba(0,0,0,.9);
+    0 0 0 1px rgba(255,60,60,.4),
+    0 0 25px rgba(255,0,0,.35);
+}
+
+.card.leader:hover{
+  box-shadow:
+    0 0 0 1px rgba(255,80,80,.8),
+    0 0 45px rgba(255,0,0,.6);
 }
 
 .card.leader .avatar{
-  background:rgba(255,200,120,.15);
+  border-color:#ff3b3b;
+  box-shadow:0 0 20px rgba(255,0,0,.6);
 }
 
 .crown{
-  color:#ffb347;
+  color:#ff3b3b;
   margin-left:6px;
 }
 
-/* Bangbathbxy */
-.card.bangbathbxy{
-  box-shadow:
-    inset 0 0 0 1px rgba(255,80,80,.22),
-    inset 0 0 28px rgba(255,60,60,.05),
-    0 25px 50px rgba(0,0,0,.9);
-}
-
-/* Bangbathbxby */
-.card.bangbathbxby{
-  box-shadow:
-    inset 0 0 0 1px rgba(180,120,255,.22),
-    inset 0 0 28px rgba(180,120,255,.05),
-    0 25px 50px rgba(0,0,0,.9);
-}
-
-/* Member */
-.card.member{
-  box-shadow:
-    inset 0 0 0 1px rgba(120,180,255,.22),
-    inset 0 0 28px rgba(120,180,255,.05),
-    0 25px 50px rgba(0,0,0,.9);
-}
-
-/* ================= FOOTER ================= */
-footer{
-  text-align:center;
-  padding:30px;
-  opacity:.6;
-}
