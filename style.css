@@ -55,7 +55,7 @@ html, body {
   transition: 0.3s;
 }
 
-.enter-btn:hover .stars {
+.enter-btn:hover {
   background: #000000;
   color: #FF0000;
    
