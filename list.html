@@ -196,6 +196,11 @@ body{
     <input id="search" type="text" placeholder="search..." onkeyup="render()">
   </div>
 </div>
+    
+ <div class="section">
+  <div class="section-title">ThebossBangbath</div>
+  <div class="grid" id="ThebossBangbath"></div>
+</div>
 
 <div class="section">
   <div class="section-title">Leader</div>
@@ -260,7 +265,8 @@ const people=[
   {name:'Saika BetaBangbath2k', role:'Member', img:'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExczU1aXR2ZmcwMDZmeThuemxndHoycHUxNjIzbWxibTVyenVvdXZtbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zrlYZhjKtoalO/giphy.gif', fb:''}
     
 ];
-  
+
+const thebossbangbath = document.getElementById("thebossbangbath); 
 const leader = document.getElementById("leader");
 const bangbathbxy = document.getElementById("bangbathbxy");
 const bangbathbxby = document.getElementById("bangbathbxby");
@@ -269,6 +275,7 @@ const search = document.getElementById("search");
 
 function render(){
   const q = search.value.toLowerCase();
+  thebossbangbath.innerHTML = ""; 
   leader.innerHTML = "";
   bangbathbxy.innerHTML = "";
   bangbathbxby.innerHTML = "";
@@ -298,7 +305,8 @@ function render(){
         </div>
       `;
 
-      if (p.role === "Leader") leader.appendChild(d);
+      if (p.role === "ThebossBangbath") thebossbangbath.appendChild(d);
+      else if (p.role === "Leader") leader.appendChild(d);
       else if (p.role === "Bangbathbxy") bangbathbxy.appendChild(d);
       else if (p.role === "Bangbathbxby") bangbathbxby.appendChild(d);
       else member.appendChild(d);
