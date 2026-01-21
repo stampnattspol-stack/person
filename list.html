@@ -140,23 +140,23 @@ body{
   background:#ff3b3b;
 }
 
-  /* ---------- OVERLORD EFFECT (เหนือ Leader) ---------- */
+  /* ---------- ThebossBangbath EFFECT (เหนือ Leader) ---------- */
 .card.ThebossBangbath{
   position:relative;
-  animation:OverlordPulse 3s infinite;
+  animation:ThebossBangbathPulse 3s infinite;
   box-shadow:
     0 0 40px rgba(255,0,0,.9),
     0 0 90px rgba(255,215,0,.6);
 }
 
-/* พลังระเบิดรอบตัว */
+/* พลังออร่าระเบิด */
 @keyframes ThebossBangbathPulse{
   0%{box-shadow:0 0 30px #ff0000,0 0 60px #ffcc00}
   50%{box-shadow:0 0 80px #ff1a1a,0 0 140px #ffd700}
   100%{box-shadow:0 0 30px #ff0000,0 0 60px #ffcc00}
 }
 
-/* Avatar ระดับพระเจ้า */
+/* Avatar ระดับบอส */
 .card.ThebossBangbath .avatar{
   background:
     radial-gradient(circle at top,#ffd700,transparent 65%),
@@ -173,13 +173,13 @@ body{
   inset:-12px;
   border-radius:50%;
   border:3px solid rgba(255,215,0,.9);
-  animation:OverlordSpin 5s linear infinite;
+  animation:ThebossBangbathSpin 5s linear infinite;
 }
 @keyframes ThebossBangbathSpin{
   to{transform:rotate(360deg)}
 }
 
-/* มงกุฎ + ออร่า */
+/* มงกุฎ + ไฟ */
 .card.ThebossBangbath .avatar::after{
   content:"👑🔥";
   position:absolute;
@@ -187,16 +187,16 @@ body{
   left:50%;
   transform:translateX(-50%);
   font-size:30px;
-  animation:OverlordFloat 2s ease-in-out infinite;
+  animation:ThebossBangbathFloat 2s ease-in-out infinite;
 }
 @keyframes ThebossBangbathFloat{
   0%,100%{transform:translate(-50%,0)}
   50%{transform:translate(-50%,-14px)}
 }
 
-/* ป้ายยศ OVERLORD */
+/* ป้ายยศ */
 .card.ThebossBangbath::after{
-  content:"OVERLORD";
+  content:"THE BOSS";
   position:absolute;
   top:10px;
   right:10px;
