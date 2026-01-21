@@ -355,13 +355,24 @@ function render(){
     .filter(p => p.name.toLowerCase().includes(q))
     .forEach(p => {
       const d = document.createElement("div");
-      <div class="card leader ThebossBangbath">
+
+      // ใส่ class พื้นฐาน
+      let cls = "card";
+
+      // ใส่ effect ตาม role
+      if (p.role === "Leader") cls += " leader";
+      if (p.role === "ThebossBangbath") cls += " leader ThebossBangbath";
+
+      d.className = cls;
+
       d.innerHTML = `
         <div class="avatar">
           <img src="${p.img}">
         </div>
+
         <div class="name">${p.name}</div>
         <div class="role">${p.role}</div>
+
         ${p.fb ? `
         <div class="social">
           <a href="${p.fb}" target="_blank"
