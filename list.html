@@ -14,7 +14,6 @@ body{
   color:#fff
 }
 
-/* ---------- HEADER ---------- */
 .header{text-align:center;padding:50px 20px}
 .header h1{margin:0;font-size:42px}
 
@@ -30,7 +29,6 @@ body{
   outline:none
 }
 
-/* ---------- SECTION ---------- */
 .section{max-width:1100px;margin:40px auto;padding:0 20px}
 .section-title{
   font-size:22px;
@@ -53,7 +51,6 @@ body{
   gap:20px
 }
 
-/* ---------- CARD ---------- */
 .card{
   background:linear-gradient(180deg,#111,#000);
   border-radius:16px;
@@ -68,7 +65,6 @@ body{
   box-shadow:0 10px 35px rgba(207,207,207)
 }
 
-/* ---------- AVATAR ---------- */
 .avatar{
   width:120px;
   height:120px;
@@ -88,7 +84,6 @@ body{
   object-fit:cover;
 }
 
-/* ---------- LEADER EFFECT ขั้นเทพ ---------- */
 .card.leader{
   animation:leaderPulse 2.5s infinite;
 }
@@ -140,7 +135,6 @@ body{
   background:#ff3b3b;
 }
 
-  /* ---------- ThebossBangbath EFFECT (เหนือ Leader) ---------- */
 .card.ThebossBangbath{
   position:relative;
   animation:ThebossBangbathPulse 3s infinite;
@@ -202,12 +196,10 @@ body{
   color:#000;
   font-weight:700;
 }
-    
-/* ---------- TEXT ---------- */
+
 .name{font-size:18px;font-weight:600}
 .role{font-size:14px;color:#FFF100}
 
-/* ---------- MUSIC PANEL ---------- */
 .music-panel{
   position:fixed;
   bottom:20px;
@@ -242,7 +234,6 @@ body{
 
 <body>
 
-<!-- ===== MUSIC ===== -->
 <audio id="bg-music" autoplay loop>
   <source src="https://www.youtube.com/watch?v=BaUwXajxkac&list=RDBaUwXajxkac&start_radio=1">
 </audio>
@@ -288,7 +279,7 @@ body{
 <div class="footer">© 2026 Bangbathbxy</div>
 
 <script>
-/* ===== MUSIC CONTROL ===== */
+    
 const music=document.getElementById("bg-music");
 const playBtn=document.getElementById("playBtn");
 const volume=document.getElementById("volume");
@@ -304,7 +295,6 @@ volume.oninput=()=>{
   label.textContent=volume.value+"%";
 };
 
-/* ===== DATA + RENDER ===== */
 const people=[
   {name:'Pond Bangbathbxy', role:'Leader', img:'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOG91aWMxaTM4OHNzYnhreWZsZmUzazJ6dzRyZXNzMms3dDZzNmRtciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RSPAUsEy1azRu/giphy.gif', fb:'https://www.facebook.com/pond.vorpard'},
   {name:'Zent DekBangbathbxy', role:'Bangbathbxy', img:'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExazJkMHVwaHJhdXN6N2N0OHFqa2NvZDdybW5qMHU2NTEyOXJlNjUxbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MA2VgqYUmRFK5KlEf9/giphy.gif', fb:'https://www.facebook.com/zen.karuna'},
@@ -350,7 +340,7 @@ function render(){
     .forEach(p => {
       const d = document.createElement("div");
 
-      // ใส่ class พื้นฐาน
+      
       let cls = "card";
 
       // ใส่ effect ตาม role
