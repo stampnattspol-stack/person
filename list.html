@@ -152,10 +152,44 @@ h1{
   font-size:13px;
   color:#6b7280;
 }
+/* 🎵 Music UI */
+#musicControl{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#0e1627;
+  border:1px solid #1f2a44;
+  border-radius:999px;
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  z-index:999;
+}
+#musicControl button{
+  background:none;
+  border:none;
+  color:#7aa2ff;
+  font-size:18px;
+  cursor:pointer;
+}
 </style>
 </head>
 
 <body>
+
+<!-- 🎵 Background Music -->
+<audio id="bgm" loop>
+  <!-- 🔥 เปลี่ยนลิงก์ mp3 ตรงนี้ -->
+  <source src="https://cdn.discordapp.com/attachments/1454149098763718870/1467059637479280800/Fridaynight_to_Sunday_Official_MV.mp3?ex=697f0142&is=697dafc2&hm=5891f74bef67f2b720c5e99857d8a935d03b6867c837d73833f2ff7e3b910461&">
+</audio>
+
+<!-- 🎧 Music Control -->
+<div id="musicControl">
+  <button id="playBtn">▶️</button>
+  <input id="volume" type="range" min="0" max="1" step="0.01" value="0.5">
+</div>
+
 <div class="container">
   <h1>BangbathStyle</h1>
   <div class="subtitle">Bangabath2k26 Members</div>
@@ -303,6 +337,25 @@ search.addEventListener("input",()=>{
 });
 
 render();
+/* 🎵 MUSIC LOGIC */
+const bgm=document.getElementById("bgm");
+const playBtn=document.getElementById("playBtn");
+const volume=document.getElementById("volume");
+
+bgm.volume=volume.value;
+
+playBtn.onclick=()=>{
+  if(bgm.paused){bgm.play();playBtn.textContent="⏸";}
+  else{bgm.pause();playBtn.textContent="▶️";}
+};
+volume.oninput=()=>bgm.volume=volume.value;
+
+/* 🔥 Auto start  */
+document.addEventListener("click",()=>{
+  if(bgm.paused){
+    bgm.play().then(()=>playBtn.textContent="⏸");
+  }
+},{once:true});
 </script>
 </body>
 </html>
